@@ -14,7 +14,30 @@
  * IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-@NotNullByDefault package com.io7m.jintegers.tests;
+package com.io7m.jintegers.documentation;
 
-import com.io7m.jnull.NotNullByDefault;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 
+/**
+ * Functions for retrieving the documentation.
+ */
+
+public final class IDocumentation
+{
+  public static URI getDocumentationXMLLocation()
+  {
+    try {
+      final URL url =
+        IDocumentation.class
+          .getResource("/com/io7m/jintegers/documentation/documentation.xml");
+      assert url != null;
+      final URI uri = url.toURI();
+      assert uri != null;
+      return uri;
+    } catch (final URISyntaxException e) {
+      throw new AssertionError(e);
+    }
+  }
+}
