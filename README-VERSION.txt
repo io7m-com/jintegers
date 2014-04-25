@@ -1,1 +1,1 @@
-io7m-jintegers 0.1.0
+io7m-jintegers 0.3.0
