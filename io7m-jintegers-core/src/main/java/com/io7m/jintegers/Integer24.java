@@ -25,7 +25,6 @@ import com.io7m.junreachable.UnreachableCodeException;
 
 public final class Integer24
 {
-
   /**
    * <p>
    * Pack <code>i</code> into a byte buffer <code>b</code> using a big-endian
@@ -50,9 +49,11 @@ public final class Integer24
    * encoding such that the most significant byte is in <code>r[0]</code>.
    * </p>
    * 
+   * @param r
+   *          The buffer
    * @param i
    *          The value to be packed.
-   * @return A byte buffer containing the packed integer data.
+   * @return <code>r</code>
    */
 
   public static byte[] packBigEndianTo(
