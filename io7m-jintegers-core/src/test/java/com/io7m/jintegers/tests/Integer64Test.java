@@ -16,13 +16,145 @@
 
 package com.io7m.jintegers.tests;
 
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+
 import org.junit.Assert;
 import org.junit.Test;
 
 import com.io7m.jintegers.Integer64;
 
-@SuppressWarnings("static-method") public class Integer64Test
+@SuppressWarnings({ "null", "static-method" }) public class Integer64Test
 {
+  @Test public void testBufferIdentityBE_0()
+  {
+    final long x = 0;
+    final ByteBuffer buffer = ByteBuffer.allocate(8);
+    Integer64.packBigEndianToBuffer(x, buffer, 0);
+    final long y = Integer64.unpackBigEndianFromBuffer(buffer, 0);
+    Assert.assertEquals(x, y);
+  }
+
+  @Test public void testBufferIdentityBE_0x7fffffff()
+  {
+    final long x = 0x7fffffffL;
+    final ByteBuffer buffer = ByteBuffer.allocate(8);
+    Integer64.packBigEndianToBuffer(x, buffer, 0);
+    final long y = Integer64.unpackBigEndianFromBuffer(buffer, 0);
+    Assert.assertEquals(x, y);
+  }
+
+  @Test public void testBufferIdentityBE_0x7fffffff_ffffffff()
+  {
+    final long x = 0x7fffffffffffffffL;
+    final ByteBuffer buffer = ByteBuffer.allocate(8);
+    Integer64.packBigEndianToBuffer(x, buffer, 0);
+    final long y = Integer64.unpackBigEndianFromBuffer(buffer, 0);
+    Assert.assertEquals(x, y);
+  }
+
+  @Test public void testBufferIdentityBE_0xffff()
+  {
+    final long x = 0xffffL;
+    final ByteBuffer buffer = ByteBuffer.allocate(8);
+    Integer64.packBigEndianToBuffer(x, buffer, 0);
+    final long y = Integer64.unpackBigEndianFromBuffer(buffer, 0);
+    Assert.assertEquals(x, y);
+  }
+
+  @Test public void testBufferIdentityBE_0xffffffff()
+  {
+    final long x = 0xffffffffL;
+    final ByteBuffer buffer = ByteBuffer.allocate(8);
+    Integer64.packBigEndianToBuffer(x, buffer, 0);
+    final long y = Integer64.unpackBigEndianFromBuffer(buffer, 0);
+    Assert.assertEquals(x, y);
+
+  }
+
+  @Test public void testBufferIdentityBE_0xffffffff_ffffffff()
+  {
+    final long x = 0xffffffffffffffffL;
+    final ByteBuffer buffer = ByteBuffer.allocate(8);
+    Integer64.packBigEndianToBuffer(x, buffer, 0);
+    final long y = Integer64.unpackBigEndianFromBuffer(buffer, 0);
+    Assert.assertEquals(x, y);
+  }
+
+  @Test public void testBufferIdentityBEInferred_0x7fffffff_ffffffff()
+  {
+    final long x = 0x7fffffffffffffffL;
+    final ByteBuffer buffer = ByteBuffer.allocate(8);
+    buffer.order(ByteOrder.BIG_ENDIAN);
+    Integer64.packToBuffer(x, buffer, 0);
+    final long y = Integer64.unpackFromBuffer(buffer, 0);
+    Assert.assertEquals(x, y);
+  }
+
+  @Test public void testBufferIdentityLE_0()
+  {
+    final long x = 0;
+    final ByteBuffer buffer = ByteBuffer.allocate(8);
+    Integer64.packBigEndianToBuffer(x, buffer, 0);
+    final long y = Integer64.unpackBigEndianFromBuffer(buffer, 0);
+    Assert.assertEquals(x, y);
+  }
+
+  @Test public void testBufferIdentityLE_0x7fffffff()
+  {
+    final long x = 0x7fffffffL;
+    final ByteBuffer buffer = ByteBuffer.allocate(8);
+    Integer64.packBigEndianToBuffer(x, buffer, 0);
+    final long y = Integer64.unpackBigEndianFromBuffer(buffer, 0);
+    Assert.assertEquals(x, y);
+  }
+
+  @Test public void testBufferIdentityLE_0x7fffffff_ffffffff()
+  {
+    final long x = 0x7fffffffffffffffL;
+    final ByteBuffer buffer = ByteBuffer.allocate(8);
+    Integer64.packBigEndianToBuffer(x, buffer, 0);
+    final long y = Integer64.unpackBigEndianFromBuffer(buffer, 0);
+    Assert.assertEquals(x, y);
+  }
+
+  @Test public void testBufferIdentityLE_0xffff()
+  {
+    final long x = 0xffffL;
+    final ByteBuffer buffer = ByteBuffer.allocate(8);
+    Integer64.packBigEndianToBuffer(x, buffer, 0);
+    final long y = Integer64.unpackBigEndianFromBuffer(buffer, 0);
+    Assert.assertEquals(x, y);
+  }
+
+  @Test public void testBufferIdentityLE_0xffffffff()
+  {
+    final long x = 0xffffffffL;
+    final ByteBuffer buffer = ByteBuffer.allocate(8);
+    Integer64.packBigEndianToBuffer(x, buffer, 0);
+    final long y = Integer64.unpackBigEndianFromBuffer(buffer, 0);
+    Assert.assertEquals(x, y);
+  }
+
+  @Test public void testBufferIdentityLE_0xffffffff_ffffffff()
+  {
+    final long x = 0xffffffffffffffffL;
+    final ByteBuffer buffer = ByteBuffer.allocate(8);
+    Integer64.packBigEndianToBuffer(x, buffer, 0);
+    final long y = Integer64.unpackBigEndianFromBuffer(buffer, 0);
+    Assert.assertEquals(x, y);
+  }
+
+  @Test public void testBufferIdentityLEInferred_0x7fffffff_ffffffff()
+  {
+    final long x = 0x7fffffffffffffffL;
+    final ByteBuffer buffer = ByteBuffer.allocate(8);
+    buffer.order(ByteOrder.LITTLE_ENDIAN);
+    Integer64.packToBuffer(x, buffer, 0);
+    final long y = Integer64.unpackFromBuffer(buffer, 0);
+    Assert.assertEquals(x, y);
+  }
+
   @Test public void testIdentityBE_0()
   {
     final long x = 0;
@@ -87,10 +219,6 @@ import com.io7m.jintegers.Integer64;
     final long y = Integer64.unpackLittleEndian(b);
     Assert.assertEquals(x, y);
   }
-
-  /*
-   * LE
-   */
 
   @Test public void testIdentityLE_0x7fffffff_ffffffff()
   {

@@ -16,6 +16,9 @@
 
 package com.io7m.jintegers;
 
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+
 import com.io7m.jnull.NullCheck;
 import com.io7m.junreachable.UnreachableCodeException;
 
@@ -86,6 +89,47 @@ public final class Integer64
 
   /**
    * <p>
+   * Pack <code>i</code> into a byte buffer <code>r</code> using a big-endian
+   * encoding such that the most significant byte is in <code>r[index]</code>.
+   * </p>
+   * 
+   * @param r
+   *          The buffer.
+   * @param i
+   *          The value to be packed.
+   * @param index
+   *          The starting index.
+   * @return <code>r</code>
+   */
+
+  public static ByteBuffer packBigEndianToBuffer(
+    final long i,
+    final ByteBuffer r,
+    final int index)
+  {
+    NullCheck.notNull(r, "Buffer");
+
+    long x = i;
+    r.put(index + 7, (byte) (x & 0xff));
+    x >>= 8;
+    r.put(index + 6, (byte) (x & 0xff));
+    x >>= 8;
+    r.put(index + 5, (byte) (x & 0xff));
+    x >>= 8;
+    r.put(index + 4, (byte) (x & 0xff));
+    x >>= 8;
+    r.put(index + 3, (byte) (x & 0xff));
+    x >>= 8;
+    r.put(index + 2, (byte) (x & 0xff));
+    x >>= 8;
+    r.put(index + 1, (byte) (x & 0xff));
+    x >>= 8;
+    r.put(index + 0, (byte) (x & 0xff));
+    return r;
+  }
+
+  /**
+   * <p>
    * Pack <code>i</code> into a byte buffer <code>b</code> using a
    * little-endian encoding such that the least significant byte is in
    * <code>b[0]</code>.
@@ -149,6 +193,76 @@ public final class Integer64
 
   /**
    * <p>
+   * Pack <code>i</code> into a byte buffer <code>r</code> using a
+   * little-endian encoding such that the least significant byte is in
+   * <code>r[index]</code>.
+   * </p>
+   * 
+   * @param r
+   *          The buffer.
+   * @param i
+   *          The value to be packed.
+   * @param index
+   *          The starting index.
+   * @return <code>r</code>
+   */
+
+  public static ByteBuffer packLittleEndianToBuffer(
+    final long i,
+    final ByteBuffer r,
+    final int index)
+  {
+    NullCheck.notNull(r, "Buffer");
+
+    long x = i;
+    r.put(index + 0, (byte) (x & 0xff));
+    x >>= 8;
+    r.put(index + 1, (byte) (x & 0xff));
+    x >>= 8;
+    r.put(index + 2, (byte) (x & 0xff));
+    x >>= 8;
+    r.put(index + 3, (byte) (x & 0xff));
+    x >>= 8;
+    r.put(index + 4, (byte) (x & 0xff));
+    x >>= 8;
+    r.put(index + 5, (byte) (x & 0xff));
+    x >>= 8;
+    r.put(index + 6, (byte) (x & 0xff));
+    x >>= 8;
+    r.put(index + 7, (byte) (x & 0xff));
+    return r;
+  }
+
+  /**
+   * <p>
+   * Pack <code>i</code> into a byte buffer <code>r</code> using the encoding
+   * returned by {@link ByteBuffer#order()}, starting at <code>index</code>.
+   * </p>
+   * 
+   * @param r
+   *          The buffer.
+   * @param i
+   *          The value to be packed.
+   * @param index
+   *          The starting index.
+   * @return <code>r</code>
+   */
+
+  public static ByteBuffer packToBuffer(
+    final long i,
+    final ByteBuffer r,
+    final int index)
+  {
+    NullCheck.notNull(r, "Buffer");
+
+    if (r.order().equals(ByteOrder.BIG_ENDIAN)) {
+      return Integer64.packBigEndianToBuffer(i, r, index);
+    }
+    return Integer64.packLittleEndianToBuffer(i, r, index);
+  }
+
+  /**
+   * <p>
    * Unpack an integer from <code>buffer</code> assuming a big-endian encoding
    * such that the most significant byte is in <code>b[0]</code>.
    * </p>
@@ -195,6 +309,68 @@ public final class Integer64
 
   /**
    * <p>
+   * Unpack an integer from <code>buffer</code> assuming a big-endian encoding
+   * such that the most significant byte is in <code>b[index]</code>.
+   * </p>
+   * 
+   * @param index
+   *          The starting index in the buffer.
+   * @param buffer
+   *          The buffer from which to unpack data.
+   * @return A 64 bit integer value.
+   */
+
+  public static long unpackBigEndianFromBuffer(
+    final ByteBuffer buffer,
+    final int index)
+  {
+    NullCheck.notNull(buffer, "Buffer");
+
+    long r = (buffer.get(index) & 0xff);
+    r <<= 8;
+    r += (buffer.get(index + 1) & 0xff);
+    r <<= 8;
+    r += (buffer.get(index + 2) & 0xff);
+    r <<= 8;
+    r += (buffer.get(index + 3) & 0xff);
+    r <<= 8;
+    r += (buffer.get(index + 4) & 0xff);
+    r <<= 8;
+    r += (buffer.get(index + 5) & 0xff);
+    r <<= 8;
+    r += (buffer.get(index + 6) & 0xff);
+    r <<= 8;
+    r += (buffer.get(index + 7) & 0xff);
+    return r;
+  }
+
+  /**
+   * <p>
+   * Unpack an integer from <code>buffer</code> using the encoding returned by
+   * {@link ByteBuffer#order()}, starting at <code>index</code>.
+   * </p>
+   * 
+   * @param index
+   *          The starting index
+   * @param buffer
+   *          The buffer from which to unpack data.
+   * @return A 32 bit integer value.
+   */
+
+  public static long unpackFromBuffer(
+    final ByteBuffer buffer,
+    final int index)
+  {
+    NullCheck.notNull(buffer, "Buffer");
+
+    if (buffer.order().equals(ByteOrder.BIG_ENDIAN)) {
+      return Integer64.unpackBigEndianFromBuffer(buffer, index);
+    }
+    return Integer64.unpackLittleEndianFromBuffer(buffer, index);
+  }
+
+  /**
+   * <p>
    * Unpack an integer from <code>buffer</code> assuming a little-endian
    * encoding such that the least significant byte is in <code>b[0]</code>.
    * </p>
@@ -236,6 +412,44 @@ public final class Integer64
     r |= buffer[1] & 0xFF;
     r <<= 8;
     r |= buffer[0] & 0xFF;
+    return r;
+  }
+
+  /**
+   * <p>
+   * Unpack an integer from <code>buffer</code> assuming a little-endian
+   * encoding such that the least significant byte is in <code>b[index]</code>
+   * .
+   * </p>
+   * 
+   * @param index
+   *          The starting index
+   * @param buffer
+   *          The buffer from which to unpack data.
+   * @return A 64 bit integer value.
+   */
+
+  public static long unpackLittleEndianFromBuffer(
+    final ByteBuffer buffer,
+    final int index)
+  {
+    NullCheck.notNull(buffer, "Buffer");
+
+    long r = (buffer.get(index + 7) & 0xff);
+    r <<= 8;
+    r += (buffer.get(index + 6) & 0xff);
+    r <<= 8;
+    r += (buffer.get(index + 5) & 0xff);
+    r <<= 8;
+    r += (buffer.get(index + 4) & 0xff);
+    r <<= 8;
+    r += (buffer.get(index + 3) & 0xff);
+    r <<= 8;
+    r += (buffer.get(index + 2) & 0xff);
+    r <<= 8;
+    r += (buffer.get(index + 1) & 0xff);
+    r <<= 8;
+    r += (buffer.get(index + 0) & 0xff);
     return r;
   }
 
