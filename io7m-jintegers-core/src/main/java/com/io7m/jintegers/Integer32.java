@@ -38,8 +38,34 @@ public final class Integer32
     final int i)
   {
     final byte[] r = new byte[4];
-    int x = i;
+    return Integer32.packBigEndianTo(i, r);
+  }
 
+  /**
+   * <p>
+   * Pack <code>i</code> into a byte buffer <code>r</code> using a big-endian
+   * encoding such that the most significant byte is in <code>r[0]</code>.
+   * </p>
+   * 
+   * @param r
+   *          The buffer
+   * @param i
+   *          The value to be packed.
+   * @return A byte buffer containing the packed integer data.
+   */
+
+  public static byte[] packBigEndianTo(
+    final int i,
+    final byte[] r)
+  {
+    NullCheck.notNull(r, "Buffer");
+    if (r.length < 4) {
+      throw new IllegalArgumentException("Buffer.length must be >= 4 (is "
+        + r.length
+        + ")");
+    }
+
+    int x = i;
     r[3] = (byte) (x & 0xff);
     x >>= 8;
     r[2] = (byte) (x & 0xff);
@@ -47,7 +73,6 @@ public final class Integer32
     r[1] = (byte) (x & 0xff);
     x >>= 8;
     r[0] = (byte) (x & 0xff);
-
     return r;
   }
 
@@ -67,8 +92,35 @@ public final class Integer32
     final int i)
   {
     final byte[] r = new byte[4];
-    int x = i;
+    return Integer32.packLittleEndianTo(i, r);
+  }
 
+  /**
+   * <p>
+   * Pack <code>i</code> into a byte buffer <code>r</code> using a
+   * little-endian encoding such that the least significant byte is in
+   * <code>r[0]</code>.
+   * </p>
+   * 
+   * @param r
+   *          The buffer
+   * @param i
+   *          The value to be packed.
+   * @return <code>r</code>
+   */
+
+  public static byte[] packLittleEndianTo(
+    final int i,
+    final byte[] r)
+  {
+    NullCheck.notNull(r, "Buffer");
+    if (r.length < 4) {
+      throw new IllegalArgumentException("Buffer.length must be >= 4 (is "
+        + r.length
+        + ")");
+    }
+
+    int x = i;
     r[0] = (byte) (x & 0xff);
     x >>= 8;
     r[1] = (byte) (x & 0xff);
@@ -76,7 +128,6 @@ public final class Integer32
     r[2] = (byte) (x & 0xff);
     x >>= 8;
     r[3] = (byte) (x & 0xff);
-
     return r;
   }
 
@@ -108,7 +159,6 @@ public final class Integer32
     }
 
     int r = 0;
-
     r |= buffer[0] & 0xFF;
     r <<= 8;
     r |= buffer[1] & 0xFF;
@@ -116,7 +166,6 @@ public final class Integer32
     r |= buffer[2] & 0xFF;
     r <<= 8;
     r |= buffer[3] & 0xFF;
-
     return r;
   }
 
@@ -148,7 +197,6 @@ public final class Integer32
     }
 
     int r = 0;
-
     r |= buffer[3] & 0xFF;
     r <<= 8;
     r |= buffer[2] & 0xFF;
@@ -156,7 +204,6 @@ public final class Integer32
     r |= buffer[1] & 0xFF;
     r <<= 8;
     r |= buffer[0] & 0xFF;
-
     return r;
   }
 

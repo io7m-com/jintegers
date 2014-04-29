@@ -38,8 +38,34 @@ public final class Integer64
     final long i)
   {
     final byte[] r = new byte[8];
-    long x = i;
+    return Integer64.packBigEndianTo(i, r);
+  }
 
+  /**
+   * <p>
+   * Pack <code>i</code> into a byte buffer <code>r</code> using a big-endian
+   * encoding such that the most significant byte is in <code>r[0]</code>.
+   * </p>
+   * 
+   * @param r
+   *          The buffer
+   * @param i
+   *          The value to be packed.
+   * @return <code>r</code>
+   */
+
+  public static byte[] packBigEndianTo(
+    final long i,
+    final byte[] r)
+  {
+    NullCheck.notNull(r, "Buffer");
+    if (r.length < 8) {
+      throw new IllegalArgumentException("Buffer.length must be >= 8 (is "
+        + r.length
+        + ")");
+    }
+
+    long x = i;
     r[7] = (byte) (x & 0xff);
     x >>= 8;
     r[6] = (byte) (x & 0xff);
@@ -55,7 +81,6 @@ public final class Integer64
     r[1] = (byte) (x & 0xff);
     x >>= 8;
     r[0] = (byte) (x & 0xff);
-
     return r;
   }
 
@@ -75,8 +100,35 @@ public final class Integer64
     final long i)
   {
     final byte[] r = new byte[8];
-    long x = i;
+    return Integer64.packLittleEndianTo(i, r);
+  }
 
+  /**
+   * <p>
+   * Pack <code>i</code> into a byte buffer <code>r</code> using a
+   * little-endian encoding such that the least significant byte is in
+   * <code>r[0]</code>.
+   * </p>
+   * 
+   * @param r
+   *          The buffer
+   * @param i
+   *          The value to be packed.
+   * @return <code>r</code>
+   */
+
+  public static byte[] packLittleEndianTo(
+    final long i,
+    final byte[] r)
+  {
+    NullCheck.notNull(r, "Buffer");
+    if (r.length < 8) {
+      throw new IllegalArgumentException("Buffer.length must be >= 8 (is "
+        + r.length
+        + ")");
+    }
+
+    long x = i;
     r[0] = (byte) (x & 0xff);
     x >>= 8;
     r[1] = (byte) (x & 0xff);
@@ -92,7 +144,6 @@ public final class Integer64
     r[6] = (byte) (x & 0xff);
     x >>= 8;
     r[7] = (byte) (x & 0xff);
-
     return r;
   }
 
@@ -124,7 +175,6 @@ public final class Integer64
     }
 
     long r = 0;
-
     r |= buffer[0] & 0xFF;
     r <<= 8;
     r |= buffer[1] & 0xFF;
@@ -140,7 +190,6 @@ public final class Integer64
     r |= buffer[6] & 0xFF;
     r <<= 8;
     r |= buffer[7] & 0xFF;
-
     return r;
   }
 
@@ -172,7 +221,6 @@ public final class Integer64
     }
 
     long r = 0;
-
     r |= buffer[7] & 0xFF;
     r <<= 8;
     r |= buffer[6] & 0xFF;
@@ -188,7 +236,6 @@ public final class Integer64
     r |= buffer[1] & 0xFF;
     r <<= 8;
     r |= buffer[0] & 0xFF;
-
     return r;
   }
 

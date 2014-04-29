@@ -21,9 +21,9 @@ import org.junit.Test;
 
 import com.io7m.jintegers.Integer24;
 
-public class Integer24Test
+@SuppressWarnings("static-method") public class Integer24Test
 {
-  @SuppressWarnings("static-method") @Test public void testIdentityBE_0()
+  @Test public void testIdentityBE_0()
   {
     final int x = 0;
     final byte[] b = Integer24.packBigEndian(x);
@@ -31,9 +31,7 @@ public class Integer24Test
     Assert.assertEquals(x, y);
   }
 
-  @SuppressWarnings("static-method") @Test public
-    void
-    testIdentityBE_0x7fffff()
+  @Test public void testIdentityBE_0x7fffff()
   {
     final int x = 0x7fffff;
     final byte[] b = Integer24.packBigEndian(x);
@@ -41,9 +39,7 @@ public class Integer24Test
     Assert.assertEquals(x, y);
   }
 
-  @SuppressWarnings("static-method") @Test public
-    void
-    testIdentityBE_0xffff()
+  @Test public void testIdentityBE_0xffff()
   {
     final int x = 0xffff;
     final byte[] b = Integer24.packBigEndian(x);
@@ -51,9 +47,7 @@ public class Integer24Test
     Assert.assertEquals(x, y);
   }
 
-  @SuppressWarnings("static-method") @Test public
-    void
-    testIdentityBE_0xffffff()
+  @Test public void testIdentityBE_0xffffff()
   {
     final int x = 0xffffff;
     final byte[] b = Integer24.packBigEndian(x);
@@ -61,7 +55,7 @@ public class Integer24Test
     Assert.assertEquals(x, y);
   }
 
-  @SuppressWarnings("static-method") @Test public void testIdentityLE_0()
+  @Test public void testIdentityLE_0()
   {
     final int x = 0;
     final byte[] b = Integer24.packLittleEndian(x);
@@ -69,9 +63,7 @@ public class Integer24Test
     Assert.assertEquals(x, y);
   }
 
-  @SuppressWarnings("static-method") @Test public
-    void
-    testIdentityLE_0x7fffff()
+  @Test public void testIdentityLE_0x7fffff()
   {
     final int x = 0x7fffff;
     final byte[] b = Integer24.packLittleEndian(x);
@@ -79,13 +71,7 @@ public class Integer24Test
     Assert.assertEquals(x, y);
   }
 
-  /*
-   * LE
-   */
-
-  @SuppressWarnings("static-method") @Test public
-    void
-    testIdentityLE_0xffff()
+  @Test public void testIdentityLE_0xffff()
   {
     final int x = 0xffff;
     final byte[] b = Integer24.packLittleEndian(x);
@@ -93,9 +79,7 @@ public class Integer24Test
     Assert.assertEquals(x, y);
   }
 
-  @SuppressWarnings("static-method") @Test public
-    void
-    testIdentityLE_0xffffff()
+  @Test public void testIdentityLE_0xffffff()
   {
     final int x = 0xffffff;
     final byte[] b = Integer24.packLittleEndian(x);
@@ -103,15 +87,31 @@ public class Integer24Test
     Assert.assertEquals(x, y);
   }
 
-  @SuppressWarnings("static-method") @Test(
-    expected = IllegalArgumentException.class) public void testTooSmall_0()
+  @Test(expected = IllegalArgumentException.class) public
+    void
+    testTooSmall_0()
   {
     Integer24.unpackBigEndian(new byte[2]);
   }
 
-  @SuppressWarnings("static-method") @Test(
-    expected = IllegalArgumentException.class) public void testTooSmall_1()
+  @Test(expected = IllegalArgumentException.class) public
+    void
+    testTooSmall_1()
   {
     Integer24.unpackLittleEndian(new byte[2]);
+  }
+
+  @Test(expected = IllegalArgumentException.class) public
+    void
+    testTooSmall_2()
+  {
+    Integer24.packBigEndianTo(0, new byte[1]);
+  }
+
+  @Test(expected = IllegalArgumentException.class) public
+    void
+    testTooSmall_3()
+  {
+    Integer24.packLittleEndianTo(0, new byte[1]);
   }
 }

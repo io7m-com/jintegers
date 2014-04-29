@@ -21,9 +21,9 @@ import org.junit.Test;
 
 import com.io7m.jintegers.Integer64;
 
-public class Integer64Test
+@SuppressWarnings("static-method") public class Integer64Test
 {
-  @SuppressWarnings("static-method") @Test public void testIdentityBE_0()
+  @Test public void testIdentityBE_0()
   {
     final long x = 0;
     final byte[] b = Integer64.packBigEndian(x);
@@ -31,9 +31,7 @@ public class Integer64Test
     Assert.assertEquals(x, y);
   }
 
-  @SuppressWarnings("static-method") @Test public
-    void
-    testIdentityBE_0x7fffffff()
+  @Test public void testIdentityBE_0x7fffffff()
   {
     final long x = 0x7fffffff;
     final byte[] b = Integer64.packBigEndian(x);
@@ -41,9 +39,7 @@ public class Integer64Test
     Assert.assertEquals(x, y);
   }
 
-  @SuppressWarnings("static-method") @Test public
-    void
-    testIdentityBE_0x7fffffff_ffffffff()
+  @Test public void testIdentityBE_0x7fffffff_ffffffff()
   {
     final long x = 0x7fffffffffffffffL;
     final byte[] b = Integer64.packBigEndian(x);
@@ -51,9 +47,7 @@ public class Integer64Test
     Assert.assertEquals(x, y);
   }
 
-  @SuppressWarnings("static-method") @Test public
-    void
-    testIdentityBE_0xffff()
+  @Test public void testIdentityBE_0xffff()
   {
     final long x = 0xffff;
     final byte[] b = Integer64.packBigEndian(x);
@@ -61,9 +55,7 @@ public class Integer64Test
     Assert.assertEquals(x, y);
   }
 
-  @SuppressWarnings("static-method") @Test public
-    void
-    testIdentityBE_0xffffffff()
+  @Test public void testIdentityBE_0xffffffff()
   {
     final long x = 0xffffffff;
     final byte[] b = Integer64.packBigEndian(x);
@@ -72,9 +64,7 @@ public class Integer64Test
 
   }
 
-  @SuppressWarnings("static-method") @Test public
-    void
-    testIdentityBE_0xffffffff_ffffffff()
+  @Test public void testIdentityBE_0xffffffff_ffffffff()
   {
     final long x = 0xffffffffffffffffL;
     final byte[] b = Integer64.packBigEndian(x);
@@ -82,7 +72,7 @@ public class Integer64Test
     Assert.assertEquals(x, y);
   }
 
-  @SuppressWarnings("static-method") @Test public void testIdentityLE_0()
+  @Test public void testIdentityLE_0()
   {
     final long x = 0;
     final byte[] b = Integer64.packLittleEndian(x);
@@ -90,9 +80,7 @@ public class Integer64Test
     Assert.assertEquals(x, y);
   }
 
-  @SuppressWarnings("static-method") @Test public
-    void
-    testIdentityLE_0x7fffffff()
+  @Test public void testIdentityLE_0x7fffffff()
   {
     final long x = 0x7fffffff;
     final byte[] b = Integer64.packLittleEndian(x);
@@ -104,9 +92,7 @@ public class Integer64Test
    * LE
    */
 
-  @SuppressWarnings("static-method") @Test public
-    void
-    testIdentityLE_0x7fffffff_ffffffff()
+  @Test public void testIdentityLE_0x7fffffff_ffffffff()
   {
     final long x = 0x7fffffffffffffffL;
     final byte[] b = Integer64.packLittleEndian(x);
@@ -114,9 +100,7 @@ public class Integer64Test
     Assert.assertEquals(x, y);
   }
 
-  @SuppressWarnings("static-method") @Test public
-    void
-    testIdentityLE_0xffff()
+  @Test public void testIdentityLE_0xffff()
   {
     final long x = 0xffff;
     final byte[] b = Integer64.packLittleEndian(x);
@@ -124,9 +108,7 @@ public class Integer64Test
     Assert.assertEquals(x, y);
   }
 
-  @SuppressWarnings("static-method") @Test public
-    void
-    testIdentityLE_0xffffffff()
+  @Test public void testIdentityLE_0xffffffff()
   {
     final long x = 0xffffffff;
     final byte[] b = Integer64.packLittleEndian(x);
@@ -134,9 +116,7 @@ public class Integer64Test
     Assert.assertEquals(x, y);
   }
 
-  @SuppressWarnings("static-method") @Test public
-    void
-    testIdentityLE_0xffffffff_ffffffff()
+  @Test public void testIdentityLE_0xffffffff_ffffffff()
   {
     final long x = 0xffffffffffffffffL;
     final byte[] b = Integer64.packLittleEndian(x);
@@ -144,15 +124,31 @@ public class Integer64Test
     Assert.assertEquals(x, y);
   }
 
-  @SuppressWarnings("static-method") @Test(
-    expected = IllegalArgumentException.class) public void testTooSmall_0()
+  @Test(expected = IllegalArgumentException.class) public
+    void
+    testTooSmall_0()
   {
     Integer64.unpackBigEndian(new byte[7]);
   }
 
-  @SuppressWarnings("static-method") @Test(
-    expected = IllegalArgumentException.class) public void testTooSmall_1()
+  @Test(expected = IllegalArgumentException.class) public
+    void
+    testTooSmall_1()
   {
     Integer64.unpackLittleEndian(new byte[7]);
+  }
+
+  @Test(expected = IllegalArgumentException.class) public
+    void
+    testTooSmall_2()
+  {
+    Integer64.packBigEndianTo(0, new byte[7]);
+  }
+
+  @Test(expected = IllegalArgumentException.class) public
+    void
+    testTooSmall_3()
+  {
+    Integer64.packLittleEndianTo(0, new byte[7]);
   }
 }

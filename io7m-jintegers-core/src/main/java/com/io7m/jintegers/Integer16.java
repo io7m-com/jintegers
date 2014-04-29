@@ -40,12 +40,37 @@ public final class Integer16
     final int i)
   {
     final byte[] r = new byte[2];
-    int x = i;
+    return Integer16.packBigEndianTo(i, r);
+  }
 
+  /**
+   * <p>
+   * Pack <code>i</code> into a byte buffer <code>r</code> using a big-endian
+   * encoding such that the most significant byte is in <code>r[0]</code>.
+   * </p>
+   * 
+   * @param r
+   *          The buffer
+   * @param i
+   *          The value to be packed.
+   * @return <code>r</code>
+   */
+
+  public static byte[] packBigEndianTo(
+    final int i,
+    final byte[] r)
+  {
+    NullCheck.notNull(r, "Buffer");
+    if (r.length < 2) {
+      throw new IllegalArgumentException("Buffer.length must be >= 2 (is "
+        + r.length
+        + ")");
+    }
+
+    int x = i;
     r[1] = (byte) (x & 0xff);
     x >>= 8;
     r[0] = (byte) (x & 0xff);
-
     return r;
   }
 
@@ -65,13 +90,39 @@ public final class Integer16
     final int i)
   {
     final byte[] r = new byte[2];
-    int x = i;
+    return Integer16.packLittleEndianTo(i, r);
+  }
 
+  /**
+   * <p>
+   * Pack <code>i</code> into a byte buffer <code>r</code> using a
+   * little-endian encoding such that the least significant byte is in
+   * <code>r[0]</code>.
+   * </p>
+   * 
+   * @param r
+   *          The buffer
+   * @param i
+   *          The value to be packed.
+   * @return <code>r</code>
+   */
+
+  public static byte[] packLittleEndianTo(
+    final int i,
+    final byte[] r)
+  {
+    NullCheck.notNull(r, "Buffer");
+    if (r.length < 2) {
+      throw new IllegalArgumentException("Buffer.length must be >= 2 (is "
+        + r.length
+        + ")");
+    }
+
+    int x = i;
     r[0] = (byte) (x & 0xff);
     x >>= 8;
     r[1] = (byte) (x & 0xff);
     x >>= 8;
-
     return r;
   }
 
@@ -105,7 +156,6 @@ public final class Integer16
     int r = (buffer[0] & 0xff);
     r <<= 8;
     r += (buffer[1] & 0xff);
-
     return r;
   }
 
@@ -139,7 +189,6 @@ public final class Integer16
     int r = (buffer[1] & 0xff);
     r <<= 8;
     r += (buffer[0] & 0xff);
-
     return r;
   }
 
