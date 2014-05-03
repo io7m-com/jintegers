@@ -51,8 +51,8 @@ import com.io7m.jintegers.Signed16;
   {
     for (int x = Short.MIN_VALUE; x <= Short.MAX_VALUE; ++x) {
       final ByteBuffer b = ByteBuffer.allocate(2);
-      Signed16.packBigEndianToBuffer(x, b, 0);
-      final int y = Signed16.unpackBigEndianFromBuffer(b, 0);
+      Signed16.packToBufferBigEndian(x, b, 0);
+      final int y = Signed16.unpackFromBufferBigEndian(b, 0);
       Assert.assertEquals(x, y);
     }
   }
@@ -61,8 +61,8 @@ import com.io7m.jintegers.Signed16;
   {
     for (int x = Short.MIN_VALUE; x <= Short.MAX_VALUE; ++x) {
       final ByteBuffer b = ByteBuffer.allocate(2);
-      Signed16.packLittleEndianToBuffer(x, b, 0);
-      final int y = Signed16.unpackLittleEndianFromBuffer(b, 0);
+      Signed16.packToBufferLittleEndian(x, b, 0);
+      final int y = Signed16.unpackFromBufferLittleEndian(b, 0);
       Assert.assertEquals(x, y);
     }
   }
@@ -70,8 +70,8 @@ import com.io7m.jintegers.Signed16;
   @Test public void testIdentityBE_All()
   {
     for (int x = Short.MIN_VALUE; x <= Short.MAX_VALUE; ++x) {
-      final byte[] b = Signed16.packBigEndian(x);
-      final int y = Signed16.unpackBigEndian(b);
+      final byte[] b = Signed16.packToBytesBigEndianAllocate(x);
+      final int y = Signed16.unpackFromBytesBigEndian(b);
       Assert.assertEquals(x, y);
     }
   }
@@ -79,8 +79,8 @@ import com.io7m.jintegers.Signed16;
   @Test public void testIdentityLE_All()
   {
     for (int x = Short.MIN_VALUE; x <= Short.MAX_VALUE; ++x) {
-      final byte[] b = Signed16.packLittleEndian(x);
-      final int y = Signed16.unpackLittleEndian(b);
+      final byte[] b = Signed16.packToBytesLittleEndianAllocate(x);
+      final int y = Signed16.unpackFromBytesLittleEndian(b);
       Assert.assertEquals(x, y);
     }
   }
@@ -89,27 +89,27 @@ import com.io7m.jintegers.Signed16;
     void
     testTooSmall_0()
   {
-    Signed16.unpackBigEndian(new byte[1]);
+    Signed16.unpackFromBytesBigEndian(new byte[1]);
   }
 
   @Test(expected = IllegalArgumentException.class) public
     void
     testTooSmall_1()
   {
-    Signed16.unpackLittleEndian(new byte[1]);
+    Signed16.unpackFromBytesLittleEndian(new byte[1]);
   }
 
   @Test(expected = IllegalArgumentException.class) public
     void
     testTooSmall_2()
   {
-    Signed16.packBigEndianTo(0, new byte[1]);
+    Signed16.packToBytesBigEndian(0, new byte[1]);
   }
 
   @Test(expected = IllegalArgumentException.class) public
     void
     testTooSmall_3()
   {
-    Signed16.packLittleEndianTo(0, new byte[1]);
+    Signed16.packToBytesLittleEndian(0, new byte[1]);
   }
 }

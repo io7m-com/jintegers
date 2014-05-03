@@ -37,11 +37,11 @@ public final class Signed32
    * @return A byte buffer containing the packed integer data.
    */
 
-  public static byte[] packBigEndian(
+  public static byte[] packToBytesBigEndianAllocate(
     final int i)
   {
     final byte[] r = new byte[4];
-    return Signed32.packBigEndianTo(i, r);
+    return Signed32.packToBytesBigEndian(i, r);
   }
 
   /**
@@ -57,7 +57,7 @@ public final class Signed32
    * @return A byte buffer containing the packed integer data.
    */
 
-  public static byte[] packBigEndianTo(
+  public static byte[] packToBytesBigEndian(
     final int i,
     final byte[] r)
   {
@@ -94,7 +94,7 @@ public final class Signed32
    * @return <code>r</code>
    */
 
-  public static ByteBuffer packBigEndianToBuffer(
+  public static ByteBuffer packToBufferBigEndian(
     final int i,
     final ByteBuffer r,
     final int index)
@@ -124,11 +124,11 @@ public final class Signed32
    * @return A byte buffer containing the packed integer data.
    */
 
-  public static byte[] packLittleEndian(
+  public static byte[] packToBytesLittleEndianAllocate(
     final int i)
   {
     final byte[] r = new byte[4];
-    return Signed32.packLittleEndianTo(i, r);
+    return Signed32.packToBytesLittleEndian(i, r);
   }
 
   /**
@@ -145,7 +145,7 @@ public final class Signed32
    * @return <code>r</code>
    */
 
-  public static byte[] packLittleEndianTo(
+  public static byte[] packToBytesLittleEndian(
     final int i,
     final byte[] r)
   {
@@ -183,7 +183,7 @@ public final class Signed32
    * @return <code>r</code>
    */
 
-  public static ByteBuffer packLittleEndianToBuffer(
+  public static ByteBuffer packToBufferLittleEndian(
     final int i,
     final ByteBuffer r,
     final int index)
@@ -224,9 +224,9 @@ public final class Signed32
     NullCheck.notNull(r, "Buffer");
 
     if (r.order().equals(ByteOrder.BIG_ENDIAN)) {
-      return Signed32.packBigEndianToBuffer(i, r, index);
+      return Signed32.packToBufferBigEndian(i, r, index);
     }
-    return Signed32.packLittleEndianToBuffer(i, r, index);
+    return Signed32.packToBufferLittleEndian(i, r, index);
   }
 
   /**
@@ -246,7 +246,7 @@ public final class Signed32
    * @return A 32 bit integer value
    */
 
-  public static int unpackBigEndian(
+  public static int unpackFromBytesBigEndian(
     final byte[] buffer)
   {
     NullCheck.notNull(buffer, "Buffer");
@@ -280,7 +280,7 @@ public final class Signed32
    * @return A 32 bit integer value.
    */
 
-  public static int unpackBigEndianFromBuffer(
+  public static int unpackFromBufferBigEndian(
     final ByteBuffer buffer,
     final int index)
   {
@@ -316,9 +316,9 @@ public final class Signed32
     NullCheck.notNull(buffer, "Buffer");
 
     if (buffer.order().equals(ByteOrder.BIG_ENDIAN)) {
-      return Signed32.unpackBigEndianFromBuffer(buffer, index);
+      return Signed32.unpackFromBufferBigEndian(buffer, index);
     }
-    return Signed32.unpackLittleEndianFromBuffer(buffer, index);
+    return Signed32.unpackFromBufferLittleEndian(buffer, index);
   }
 
   /**
@@ -338,7 +338,7 @@ public final class Signed32
    * @return A 32 bit integer value
    */
 
-  public static int unpackLittleEndian(
+  public static int unpackFromBytesLittleEndian(
     final byte[] buffer)
   {
     NullCheck.notNull(buffer, "Buffer");
@@ -373,7 +373,7 @@ public final class Signed32
    * @return A 32 bit integer value.
    */
 
-  public static int unpackLittleEndianFromBuffer(
+  public static int unpackFromBufferLittleEndian(
     final ByteBuffer buffer,
     final int index)
   {

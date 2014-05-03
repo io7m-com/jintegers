@@ -57,7 +57,7 @@ public final class Unsigned8
    *          The starting index.
    */
 
-  public static void packIntoBuffer(
+  public static void packToBuffer(
     final int x,
     final ByteBuffer data,
     final int index)

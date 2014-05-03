@@ -46,7 +46,7 @@ import com.io7m.jintegers.Unsigned8;
 
     for (int i = 0; i <= 8; ++i) {
       final int x = (int) Math.pow(2, i) - 1;
-      Unsigned8.packIntoBuffer(x, b, 0);
+      Unsigned8.packToBuffer(x, b, 0);
       final long y = Unsigned8.unpackFromBuffer(b, 0);
       System.out.printf("%d %d\n", x, y);
       Assert.assertEquals(x, y);
@@ -73,7 +73,7 @@ import com.io7m.jintegers.Unsigned8;
 
     for (int i = 0; i <= 8; ++i) {
       final int x = (int) Math.pow(2, i) - 1;
-      Unsigned8.packIntoBuffer(x, b, 0);
+      Unsigned8.packToBuffer(x, b, 0);
       final long y = Unsigned8.unpackFromBuffer(b, 0);
       System.out.printf("%d %d\n", x, y);
       Assert.assertEquals(x, y);

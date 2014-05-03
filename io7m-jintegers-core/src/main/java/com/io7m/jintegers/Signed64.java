@@ -37,11 +37,11 @@ public final class Signed64
    * @return A byte buffer containing the packed integer data.
    */
 
-  public static byte[] packBigEndian(
+  public static byte[] packToBytesBigEndianAllocate(
     final long i)
   {
     final byte[] r = new byte[8];
-    return Signed64.packBigEndianTo(i, r);
+    return Signed64.packToBytesBigEndian(i, r);
   }
 
   /**
@@ -57,7 +57,7 @@ public final class Signed64
    * @return <code>r</code>
    */
 
-  public static byte[] packBigEndianTo(
+  public static byte[] packToBytesBigEndian(
     final long i,
     final byte[] r)
   {
@@ -102,7 +102,7 @@ public final class Signed64
    * @return <code>r</code>
    */
 
-  public static ByteBuffer packBigEndianToBuffer(
+  public static ByteBuffer packToBufferBigEndian(
     final long i,
     final ByteBuffer r,
     final int index)
@@ -140,11 +140,11 @@ public final class Signed64
    * @return A byte buffer containing the packed integer data.
    */
 
-  public static byte[] packLittleEndian(
+  public static byte[] packToBytesLittleEndianAllocate(
     final long i)
   {
     final byte[] r = new byte[8];
-    return Signed64.packLittleEndianTo(i, r);
+    return Signed64.packToBytesLittleEndian(i, r);
   }
 
   /**
@@ -161,7 +161,7 @@ public final class Signed64
    * @return <code>r</code>
    */
 
-  public static byte[] packLittleEndianTo(
+  public static byte[] packToBytesLittleEndian(
     final long i,
     final byte[] r)
   {
@@ -207,7 +207,7 @@ public final class Signed64
    * @return <code>r</code>
    */
 
-  public static ByteBuffer packLittleEndianToBuffer(
+  public static ByteBuffer packToBufferLittleEndian(
     final long i,
     final ByteBuffer r,
     final int index)
@@ -256,9 +256,9 @@ public final class Signed64
     NullCheck.notNull(r, "Buffer");
 
     if (r.order().equals(ByteOrder.BIG_ENDIAN)) {
-      return Signed64.packBigEndianToBuffer(i, r, index);
+      return Signed64.packToBufferBigEndian(i, r, index);
     }
-    return Signed64.packLittleEndianToBuffer(i, r, index);
+    return Signed64.packToBufferLittleEndian(i, r, index);
   }
 
   /**
@@ -278,7 +278,7 @@ public final class Signed64
    * @return A 64 bit integer value
    */
 
-  public static long unpackBigEndian(
+  public static long unpackFromBytesBigEndian(
     final byte[] buffer)
   {
     NullCheck.notNull(buffer, "Buffer");
@@ -320,7 +320,7 @@ public final class Signed64
    * @return A 64 bit integer value.
    */
 
-  public static long unpackBigEndianFromBuffer(
+  public static long unpackFromBufferBigEndian(
     final ByteBuffer buffer,
     final int index)
   {
@@ -364,9 +364,9 @@ public final class Signed64
     NullCheck.notNull(buffer, "Buffer");
 
     if (buffer.order().equals(ByteOrder.BIG_ENDIAN)) {
-      return Signed64.unpackBigEndianFromBuffer(buffer, index);
+      return Signed64.unpackFromBufferBigEndian(buffer, index);
     }
-    return Signed64.unpackLittleEndianFromBuffer(buffer, index);
+    return Signed64.unpackFromBufferLittleEndian(buffer, index);
   }
 
   /**
@@ -386,7 +386,7 @@ public final class Signed64
    * @return A 64 bit integer value
    */
 
-  public static long unpackLittleEndian(
+  public static long unpackFromBytesLittleEndian(
     final byte[] buffer)
   {
     NullCheck.notNull(buffer, "Buffer");
@@ -429,7 +429,7 @@ public final class Signed64
    * @return A 64 bit integer value.
    */
 
-  public static long unpackLittleEndianFromBuffer(
+  public static long unpackFromBufferLittleEndian(
     final ByteBuffer buffer,
     final int index)
   {

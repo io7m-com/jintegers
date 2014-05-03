@@ -79,15 +79,15 @@ import com.io7m.jintegers.Signed32;
 
       {
         final ByteBuffer b = ByteBuffer.allocate(4);
-        Signed32.packBigEndianToBuffer(x, b, 0);
-        final int y = Signed32.unpackBigEndianFromBuffer(b, 0);
+        Signed32.packToBufferBigEndian(x, b, 0);
+        final int y = Signed32.unpackFromBufferBigEndian(b, 0);
         Assert.assertEquals(x, y);
       }
 
       {
         final ByteBuffer b = ByteBuffer.allocate(4);
-        Signed32.packBigEndianToBuffer(-x, b, 0);
-        final int y = Signed32.unpackBigEndianFromBuffer(b, 0);
+        Signed32.packToBufferBigEndian(-x, b, 0);
+        final int y = Signed32.unpackFromBufferBigEndian(b, 0);
         Assert.assertEquals(-x, y);
       }
     }
@@ -100,16 +100,16 @@ import com.io7m.jintegers.Signed32;
 
       {
         final ByteBuffer b = ByteBuffer.allocate(4);
-        Signed32.packLittleEndianToBuffer(x, b, 0);
-        final int y = Signed32.unpackLittleEndianFromBuffer(b, 0);
+        Signed32.packToBufferLittleEndian(x, b, 0);
+        final int y = Signed32.unpackFromBufferLittleEndian(b, 0);
         System.out.printf("LE: (%d) %d %d\n", k, x, y);
         Assert.assertEquals(x, y);
       }
 
       {
         final ByteBuffer b = ByteBuffer.allocate(4);
-        Signed32.packLittleEndianToBuffer(-x, b, 0);
-        final int y = Signed32.unpackLittleEndianFromBuffer(b, 0);
+        Signed32.packToBufferLittleEndian(-x, b, 0);
+        final int y = Signed32.unpackFromBufferLittleEndian(b, 0);
         System.out.printf("LE: (%d) %d %d\n", k, x, y);
         Assert.assertEquals(-x, y);
       }
@@ -122,15 +122,15 @@ import com.io7m.jintegers.Signed32;
     final int x = (int) (Math.pow(2, k) - 1);
 
     {
-      final byte[] b = Signed32.packBigEndian(x);
-      final int y = Signed32.unpackBigEndian(b);
+      final byte[] b = Signed32.packToBytesBigEndianAllocate(x);
+      final int y = Signed32.unpackFromBytesBigEndian(b);
       System.out.printf("BE: (%d) %d %d\n", k, x, y);
       Assert.assertEquals(x, y);
     }
 
     {
-      final byte[] b = Signed32.packBigEndian(-x);
-      final int y = Signed32.unpackBigEndian(b);
+      final byte[] b = Signed32.packToBytesBigEndianAllocate(-x);
+      final int y = Signed32.unpackFromBytesBigEndian(b);
       System.out.printf("BE: -(%d) %d %d\n", k, x, y);
       Assert.assertEquals(-x, y);
     }
@@ -142,15 +142,15 @@ import com.io7m.jintegers.Signed32;
     final int x = (int) (Math.pow(2, k) - 1);
 
     {
-      final byte[] b = Signed32.packBigEndian(x);
-      final int y = Signed32.unpackBigEndian(b);
+      final byte[] b = Signed32.packToBytesBigEndianAllocate(x);
+      final int y = Signed32.unpackFromBytesBigEndian(b);
       System.out.printf("BE: (%d) %d %d\n", k, x, y);
       Assert.assertEquals(x, y);
     }
 
     {
-      final byte[] b = Signed32.packBigEndian(-x);
-      final int y = Signed32.unpackBigEndian(b);
+      final byte[] b = Signed32.packToBytesBigEndianAllocate(-x);
+      final int y = Signed32.unpackFromBytesBigEndian(b);
       System.out.printf("BE: -(%d) %d %d\n", k, x, y);
       Assert.assertEquals(-x, y);
     }
@@ -162,15 +162,15 @@ import com.io7m.jintegers.Signed32;
       final int x = (int) (Math.pow(2, k) - 1);
 
       {
-        final byte[] b = Signed32.packBigEndian(x);
-        final int y = Signed32.unpackBigEndian(b);
+        final byte[] b = Signed32.packToBytesBigEndianAllocate(x);
+        final int y = Signed32.unpackFromBytesBigEndian(b);
         System.out.printf("BE: (%d) %d %d\n", k, x, y);
         Assert.assertEquals(x, y);
       }
 
       {
-        final byte[] b = Signed32.packBigEndian(-x);
-        final int y = Signed32.unpackBigEndian(b);
+        final byte[] b = Signed32.packToBytesBigEndianAllocate(-x);
+        final int y = Signed32.unpackFromBytesBigEndian(b);
         System.out.printf("BE: -(%d) %d %d\n", k, x, y);
         Assert.assertEquals(-x, y);
       }
@@ -183,15 +183,15 @@ import com.io7m.jintegers.Signed32;
       final int x = (int) (Math.pow(2, k) - 1);
 
       {
-        final byte[] b = Signed32.packLittleEndian(x);
-        final int y = Signed32.unpackLittleEndian(b);
+        final byte[] b = Signed32.packToBytesLittleEndianAllocate(x);
+        final int y = Signed32.unpackFromBytesLittleEndian(b);
         System.out.printf("LE: (%d) %d %d\n", k, x, y);
         Assert.assertEquals(x, y);
       }
 
       {
-        final byte[] b = Signed32.packLittleEndian(-x);
-        final int y = Signed32.unpackLittleEndian(b);
+        final byte[] b = Signed32.packToBytesLittleEndianAllocate(-x);
+        final int y = Signed32.unpackFromBytesLittleEndian(b);
         System.out.printf("LE: (%d) %d %d\n", k, x, y);
         Assert.assertEquals(-x, y);
       }
@@ -202,27 +202,27 @@ import com.io7m.jintegers.Signed32;
     void
     testTooSmall_0()
   {
-    Signed32.unpackBigEndian(new byte[3]);
+    Signed32.unpackFromBytesBigEndian(new byte[3]);
   }
 
   @Test(expected = IllegalArgumentException.class) public
     void
     testTooSmall_1()
   {
-    Signed32.unpackLittleEndian(new byte[3]);
+    Signed32.unpackFromBytesLittleEndian(new byte[3]);
   }
 
   @Test(expected = IllegalArgumentException.class) public
     void
     testTooSmall_2()
   {
-    Signed32.packBigEndianTo(0, new byte[3]);
+    Signed32.packToBytesBigEndian(0, new byte[3]);
   }
 
   @Test(expected = IllegalArgumentException.class) public
     void
     testTooSmall_3()
   {
-    Signed32.packLittleEndianTo(0, new byte[3]);
+    Signed32.packToBytesLittleEndian(0, new byte[3]);
   }
 }
