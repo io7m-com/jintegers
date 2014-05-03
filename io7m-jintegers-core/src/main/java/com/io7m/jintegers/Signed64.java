@@ -22,11 +22,9 @@ import java.nio.ByteOrder;
 import com.io7m.jnull.NullCheck;
 import com.io7m.junreachable.UnreachableCodeException;
 
-/**
- * 16-bit integer packing/unpacking functions.
- */
+/** 64-bit integer packing/unpacking functions. */
 
-public final class Integer16
+public final class Signed64
 {
   /**
    * <p>
@@ -40,10 +38,10 @@ public final class Integer16
    */
 
   public static byte[] packBigEndian(
-    final int i)
+    final long i)
   {
-    final byte[] r = new byte[2];
-    return Integer16.packBigEndianTo(i, r);
+    final byte[] r = new byte[8];
+    return Signed64.packBigEndianTo(i, r);
   }
 
   /**
@@ -53,24 +51,36 @@ public final class Integer16
    * </p>
    * 
    * @param r
-   *          The buffer.
+   *          The buffer
    * @param i
    *          The value to be packed.
    * @return <code>r</code>
    */
 
   public static byte[] packBigEndianTo(
-    final int i,
+    final long i,
     final byte[] r)
   {
     NullCheck.notNull(r, "Buffer");
-    if (r.length < 2) {
-      throw new IllegalArgumentException("Buffer.length must be >= 2 (is "
+    if (r.length < 8) {
+      throw new IllegalArgumentException("Buffer.length must be >= 8 (is "
         + r.length
         + ")");
     }
 
-    int x = i;
+    long x = i;
+    r[7] = (byte) (x & 0xff);
+    x >>= 8;
+    r[6] = (byte) (x & 0xff);
+    x >>= 8;
+    r[5] = (byte) (x & 0xff);
+    x >>= 8;
+    r[4] = (byte) (x & 0xff);
+    x >>= 8;
+    r[3] = (byte) (x & 0xff);
+    x >>= 8;
+    r[2] = (byte) (x & 0xff);
+    x >>= 8;
     r[1] = (byte) (x & 0xff);
     x >>= 8;
     r[0] = (byte) (x & 0xff);
@@ -93,17 +103,28 @@ public final class Integer16
    */
 
   public static ByteBuffer packBigEndianToBuffer(
-    final int i,
+    final long i,
     final ByteBuffer r,
     final int index)
   {
     NullCheck.notNull(r, "Buffer");
 
-    int x = i;
+    long x = i;
+    r.put(index + 7, (byte) (x & 0xff));
+    x >>= 8;
+    r.put(index + 6, (byte) (x & 0xff));
+    x >>= 8;
+    r.put(index + 5, (byte) (x & 0xff));
+    x >>= 8;
+    r.put(index + 4, (byte) (x & 0xff));
+    x >>= 8;
+    r.put(index + 3, (byte) (x & 0xff));
+    x >>= 8;
+    r.put(index + 2, (byte) (x & 0xff));
+    x >>= 8;
     r.put(index + 1, (byte) (x & 0xff));
     x >>= 8;
     r.put(index + 0, (byte) (x & 0xff));
-    x >>= 8;
     return r;
   }
 
@@ -120,10 +141,10 @@ public final class Integer16
    */
 
   public static byte[] packLittleEndian(
-    final int i)
+    final long i)
   {
-    final byte[] r = new byte[2];
-    return Integer16.packLittleEndianTo(i, r);
+    final byte[] r = new byte[8];
+    return Signed64.packLittleEndianTo(i, r);
   }
 
   /**
@@ -134,28 +155,39 @@ public final class Integer16
    * </p>
    * 
    * @param r
-   *          The buffer.
+   *          The buffer
    * @param i
    *          The value to be packed.
    * @return <code>r</code>
    */
 
   public static byte[] packLittleEndianTo(
-    final int i,
+    final long i,
     final byte[] r)
   {
     NullCheck.notNull(r, "Buffer");
-    if (r.length < 2) {
-      throw new IllegalArgumentException("Buffer.length must be >= 2 (is "
+    if (r.length < 8) {
+      throw new IllegalArgumentException("Buffer.length must be >= 8 (is "
         + r.length
         + ")");
     }
 
-    int x = i;
+    long x = i;
     r[0] = (byte) (x & 0xff);
     x >>= 8;
     r[1] = (byte) (x & 0xff);
     x >>= 8;
+    r[2] = (byte) (x & 0xff);
+    x >>= 8;
+    r[3] = (byte) (x & 0xff);
+    x >>= 8;
+    r[4] = (byte) (x & 0xff);
+    x >>= 8;
+    r[5] = (byte) (x & 0xff);
+    x >>= 8;
+    r[6] = (byte) (x & 0xff);
+    x >>= 8;
+    r[7] = (byte) (x & 0xff);
     return r;
   }
 
@@ -176,17 +208,28 @@ public final class Integer16
    */
 
   public static ByteBuffer packLittleEndianToBuffer(
-    final int i,
+    final long i,
     final ByteBuffer r,
     final int index)
   {
     NullCheck.notNull(r, "Buffer");
 
-    int x = i;
+    long x = i;
     r.put(index + 0, (byte) (x & 0xff));
     x >>= 8;
     r.put(index + 1, (byte) (x & 0xff));
     x >>= 8;
+    r.put(index + 2, (byte) (x & 0xff));
+    x >>= 8;
+    r.put(index + 3, (byte) (x & 0xff));
+    x >>= 8;
+    r.put(index + 4, (byte) (x & 0xff));
+    x >>= 8;
+    r.put(index + 5, (byte) (x & 0xff));
+    x >>= 8;
+    r.put(index + 6, (byte) (x & 0xff));
+    x >>= 8;
+    r.put(index + 7, (byte) (x & 0xff));
     return r;
   }
 
@@ -206,16 +249,16 @@ public final class Integer16
    */
 
   public static ByteBuffer packToBuffer(
-    final int i,
+    final long i,
     final ByteBuffer r,
     final int index)
   {
     NullCheck.notNull(r, "Buffer");
 
     if (r.order().equals(ByteOrder.BIG_ENDIAN)) {
-      return Integer16.packBigEndianToBuffer(i, r, index);
+      return Signed64.packBigEndianToBuffer(i, r, index);
     }
-    return Integer16.packLittleEndianToBuffer(i, r, index);
+    return Signed64.packLittleEndianToBuffer(i, r, index);
   }
 
   /**
@@ -224,29 +267,43 @@ public final class Integer16
    * such that the most significant byte is in <code>b[0]</code>.
    * </p>
    * <p>
-   * The function throws {@link IllegalArgumentException} if
+   * The function throws {@link NullPointerException} if
+   * <code>buffer == null</code> and {@link IllegalArgumentException} if
    * <code>buffer.length</code> is too small to contain a packed integer value
    * of this size.
    * </p>
    * 
    * @param buffer
-   *          The buffer from which to unpack data.
-   * @return A 16 bit integer value.
+   *          The buffer from which to unpack data
+   * @return A 64 bit integer value
    */
 
-  public static int unpackBigEndian(
+  public static long unpackBigEndian(
     final byte[] buffer)
   {
     NullCheck.notNull(buffer, "Buffer");
-    if (buffer.length < 2) {
-      throw new IllegalArgumentException("Buffer.length must be >= 2 (is "
+    if (buffer.length < 8) {
+      throw new IllegalArgumentException("Buffer.length must be >= 8 (is "
         + buffer.length
         + ")");
     }
 
-    int r = (buffer[0] & 0xff);
+    long r = 0;
+    r |= buffer[0] & 0xFF;
     r <<= 8;
-    r += (buffer[1] & 0xff);
+    r |= buffer[1] & 0xFF;
+    r <<= 8;
+    r |= buffer[2] & 0xFF;
+    r <<= 8;
+    r |= buffer[3] & 0xFF;
+    r <<= 8;
+    r |= buffer[4] & 0xFF;
+    r <<= 8;
+    r |= buffer[5] & 0xFF;
+    r <<= 8;
+    r |= buffer[6] & 0xFF;
+    r <<= 8;
+    r |= buffer[7] & 0xFF;
     return r;
   }
 
@@ -260,18 +317,30 @@ public final class Integer16
    *          The starting index in the buffer.
    * @param buffer
    *          The buffer from which to unpack data.
-   * @return A 16 bit integer value.
+   * @return A 64 bit integer value.
    */
 
-  public static int unpackBigEndianFromBuffer(
+  public static long unpackBigEndianFromBuffer(
     final ByteBuffer buffer,
     final int index)
   {
     NullCheck.notNull(buffer, "Buffer");
 
-    int r = (buffer.get(index) & 0xff);
+    long r = (buffer.get(index) & 0xff);
     r <<= 8;
     r += (buffer.get(index + 1) & 0xff);
+    r <<= 8;
+    r += (buffer.get(index + 2) & 0xff);
+    r <<= 8;
+    r += (buffer.get(index + 3) & 0xff);
+    r <<= 8;
+    r += (buffer.get(index + 4) & 0xff);
+    r <<= 8;
+    r += (buffer.get(index + 5) & 0xff);
+    r <<= 8;
+    r += (buffer.get(index + 6) & 0xff);
+    r <<= 8;
+    r += (buffer.get(index + 7) & 0xff);
     return r;
   }
 
@@ -285,19 +354,19 @@ public final class Integer16
    *          The starting index
    * @param buffer
    *          The buffer from which to unpack data.
-   * @return A 16 bit integer value.
+   * @return A 32 bit integer value.
    */
 
-  public static int unpackFromBuffer(
+  public static long unpackFromBuffer(
     final ByteBuffer buffer,
     final int index)
   {
     NullCheck.notNull(buffer, "Buffer");
 
     if (buffer.order().equals(ByteOrder.BIG_ENDIAN)) {
-      return Integer16.unpackBigEndianFromBuffer(buffer, index);
+      return Signed64.unpackBigEndianFromBuffer(buffer, index);
     }
-    return Integer16.unpackLittleEndianFromBuffer(buffer, index);
+    return Signed64.unpackLittleEndianFromBuffer(buffer, index);
   }
 
   /**
@@ -306,29 +375,43 @@ public final class Integer16
    * encoding such that the least significant byte is in <code>b[0]</code>.
    * </p>
    * <p>
-   * The function throws {@link IllegalArgumentException} if
+   * The function throws {@link NullPointerException} if
+   * <code>buffer == null</code> and {@link IllegalArgumentException} if
    * <code>buffer.length</code> is too small to contain a packed integer value
    * of this size.
    * </p>
    * 
    * @param buffer
-   *          The buffer from which to unpack data.
-   * @return A 16 bit integer value.
+   *          The buffer from which to unpack data
+   * @return A 64 bit integer value
    */
 
-  public static int unpackLittleEndian(
+  public static long unpackLittleEndian(
     final byte[] buffer)
   {
     NullCheck.notNull(buffer, "Buffer");
-    if (buffer.length < 2) {
-      throw new IllegalArgumentException("Buffer.length must be >= 2 (is "
+    if (buffer.length < 8) {
+      throw new IllegalArgumentException("Buffer.length must be >= 8 (is "
         + buffer.length
         + ")");
     }
 
-    int r = (buffer[1] & 0xff);
+    long r = 0;
+    r |= buffer[7] & 0xFF;
     r <<= 8;
-    r += (buffer[0] & 0xff);
+    r |= buffer[6] & 0xFF;
+    r <<= 8;
+    r |= buffer[5] & 0xFF;
+    r <<= 8;
+    r |= buffer[4] & 0xFF;
+    r <<= 8;
+    r |= buffer[3] & 0xFF;
+    r <<= 8;
+    r |= buffer[2] & 0xFF;
+    r <<= 8;
+    r |= buffer[1] & 0xFF;
+    r <<= 8;
+    r |= buffer[0] & 0xFF;
     return r;
   }
 
@@ -343,22 +426,34 @@ public final class Integer16
    *          The starting index
    * @param buffer
    *          The buffer from which to unpack data.
-   * @return A 16 bit integer value.
+   * @return A 64 bit integer value.
    */
 
-  public static int unpackLittleEndianFromBuffer(
+  public static long unpackLittleEndianFromBuffer(
     final ByteBuffer buffer,
     final int index)
   {
     NullCheck.notNull(buffer, "Buffer");
 
-    int r = (buffer.get(index + 1) & 0xff);
+    long r = (buffer.get(index + 7) & 0xff);
     r <<= 8;
-    r += (buffer.get(index) & 0xff);
+    r += (buffer.get(index + 6) & 0xff);
+    r <<= 8;
+    r += (buffer.get(index + 5) & 0xff);
+    r <<= 8;
+    r += (buffer.get(index + 4) & 0xff);
+    r <<= 8;
+    r += (buffer.get(index + 3) & 0xff);
+    r <<= 8;
+    r += (buffer.get(index + 2) & 0xff);
+    r <<= 8;
+    r += (buffer.get(index + 1) & 0xff);
+    r <<= 8;
+    r += (buffer.get(index + 0) & 0xff);
     return r;
   }
 
-  private Integer16()
+  private Signed64()
   {
     throw new UnreachableCodeException();
   }

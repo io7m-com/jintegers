@@ -22,9 +22,11 @@ import java.nio.ByteOrder;
 import com.io7m.jnull.NullCheck;
 import com.io7m.junreachable.UnreachableCodeException;
 
-/** 32-bit integer packing/unpacking functions. */
+/**
+ * 24-bit integer packing/unpacking functions.
+ */
 
-public final class Integer32
+public final class Signed24
 {
   /**
    * <p>
@@ -40,8 +42,8 @@ public final class Integer32
   public static byte[] packBigEndian(
     final int i)
   {
-    final byte[] r = new byte[4];
-    return Integer32.packBigEndianTo(i, r);
+    final byte[] r = new byte[3];
+    return Signed24.packBigEndianTo(i, r);
   }
 
   /**
@@ -54,7 +56,7 @@ public final class Integer32
    *          The buffer
    * @param i
    *          The value to be packed.
-   * @return A byte buffer containing the packed integer data.
+   * @return <code>r</code>
    */
 
   public static byte[] packBigEndianTo(
@@ -62,20 +64,15 @@ public final class Integer32
     final byte[] r)
   {
     NullCheck.notNull(r, "Buffer");
-    if (r.length < 4) {
-      throw new IllegalArgumentException("Buffer.length must be >= 4 (is "
+    if (r.length < 3) {
+      throw new IllegalArgumentException("Buffer.length must be >= 3 (is "
         + r.length
         + ")");
     }
 
-    int x = i;
-    r[3] = (byte) (x & 0xff);
-    x >>= 8;
-    r[2] = (byte) (x & 0xff);
-    x >>= 8;
-    r[1] = (byte) (x & 0xff);
-    x >>= 8;
-    r[0] = (byte) (x & 0xff);
+    r[0] = (byte) (i >> 16);
+    r[1] = (byte) (i >> 8);
+    r[2] = (byte) (i & 0xff);
     return r;
   }
 
@@ -101,14 +98,9 @@ public final class Integer32
   {
     NullCheck.notNull(r, "Buffer");
 
-    int x = i;
-    r.put(index + 3, (byte) (x & 0xff));
-    x >>= 8;
-    r.put(index + 2, (byte) (x & 0xff));
-    x >>= 8;
-    r.put(index + 1, (byte) (x & 0xff));
-    x >>= 8;
-    r.put(index + 0, (byte) (x & 0xff));
+    r.put(index + 0, (byte) (i >> 16));
+    r.put(index + 1, (byte) (i >> 8));
+    r.put(index + 2, (byte) (i & 0xff));
     return r;
   }
 
@@ -127,15 +119,15 @@ public final class Integer32
   public static byte[] packLittleEndian(
     final int i)
   {
-    final byte[] r = new byte[4];
-    return Integer32.packLittleEndianTo(i, r);
+    final byte[] r = new byte[3];
+    return Signed24.packLittleEndianTo(i, r);
   }
 
   /**
    * <p>
    * Pack <code>i</code> into a byte buffer <code>r</code> using a
    * little-endian encoding such that the least significant byte is in
-   * <code>r[0]</code>.
+   * <code>b[0]</code>.
    * </p>
    * 
    * @param r
@@ -150,20 +142,15 @@ public final class Integer32
     final byte[] r)
   {
     NullCheck.notNull(r, "Buffer");
-    if (r.length < 4) {
-      throw new IllegalArgumentException("Buffer.length must be >= 4 (is "
+    if (r.length < 3) {
+      throw new IllegalArgumentException("Buffer.length must be >= 3 (is "
         + r.length
         + ")");
     }
 
-    int x = i;
-    r[0] = (byte) (x & 0xff);
-    x >>= 8;
-    r[1] = (byte) (x & 0xff);
-    x >>= 8;
-    r[2] = (byte) (x & 0xff);
-    x >>= 8;
-    r[3] = (byte) (x & 0xff);
+    r[0] = (byte) (i & 0xff);
+    r[1] = (byte) (i >> 8);
+    r[2] = (byte) (i >> 16);
     return r;
   }
 
@@ -190,14 +177,9 @@ public final class Integer32
   {
     NullCheck.notNull(r, "Buffer");
 
-    int x = i;
-    r.put(index + 0, (byte) (x & 0xff));
-    x >>= 8;
-    r.put(index + 1, (byte) (x & 0xff));
-    x >>= 8;
-    r.put(index + 2, (byte) (x & 0xff));
-    x >>= 8;
-    r.put(index + 3, (byte) (x & 0xff));
+    r.put(index + 0, (byte) (i & 0xff));
+    r.put(index + 1, (byte) (i >> 8));
+    r.put(index + 2, (byte) (i >> 16));
     return r;
   }
 
@@ -224,9 +206,9 @@ public final class Integer32
     NullCheck.notNull(r, "Buffer");
 
     if (r.order().equals(ByteOrder.BIG_ENDIAN)) {
-      return Integer32.packBigEndianToBuffer(i, r, index);
+      return Signed24.packBigEndianToBuffer(i, r, index);
     }
-    return Integer32.packLittleEndianToBuffer(i, r, index);
+    return Signed24.packLittleEndianToBuffer(i, r, index);
   }
 
   /**
@@ -243,27 +225,23 @@ public final class Integer32
    * 
    * @param buffer
    *          The buffer from which to unpack data
-   * @return A 32 bit integer value
+   * @return A 24 bit integer value
    */
 
   public static int unpackBigEndian(
     final byte[] buffer)
   {
     NullCheck.notNull(buffer, "Buffer");
-    if (buffer.length < 4) {
-      throw new IllegalArgumentException("Buffer.length must be >= 4 (is "
+    if (buffer.length < 3) {
+      throw new IllegalArgumentException("Buffer.length must be >= 3 (is "
         + buffer.length
         + ")");
     }
 
-    int r = 0;
-    r |= buffer[0] & 0xFF;
-    r <<= 8;
-    r |= buffer[1] & 0xFF;
-    r <<= 8;
-    r |= buffer[2] & 0xFF;
-    r <<= 8;
-    r |= buffer[3] & 0xFF;
+    final int r0 = (buffer[0] << 16);
+    final int r1 = (buffer[1] & 0xff) << 8;
+    final int r2 = (buffer[2] & 0xff);
+    final int r = r0 | r1 | r2;
     return r;
   }
 
@@ -277,7 +255,7 @@ public final class Integer32
    *          The starting index in the buffer.
    * @param buffer
    *          The buffer from which to unpack data.
-   * @return A 32 bit integer value.
+   * @return A 24 bit integer value.
    */
 
   public static int unpackBigEndianFromBuffer(
@@ -286,13 +264,10 @@ public final class Integer32
   {
     NullCheck.notNull(buffer, "Buffer");
 
-    int r = (buffer.get(index) & 0xff);
-    r <<= 8;
-    r += (buffer.get(index + 1) & 0xff);
-    r <<= 8;
-    r += (buffer.get(index + 2) & 0xff);
-    r <<= 8;
-    r += (buffer.get(index + 3) & 0xff);
+    final int r0 = (buffer.get(index + 0) << 16);
+    final int r1 = (buffer.get(index + 1) & 0xff) << 8;
+    final int r2 = (buffer.get(index + 2) & 0xff);
+    final int r = r0 | r1 | r2;
     return r;
   }
 
@@ -306,7 +281,7 @@ public final class Integer32
    *          The starting index
    * @param buffer
    *          The buffer from which to unpack data.
-   * @return A 32 bit integer value.
+   * @return A 24 bit integer value.
    */
 
   public static int unpackFromBuffer(
@@ -316,9 +291,9 @@ public final class Integer32
     NullCheck.notNull(buffer, "Buffer");
 
     if (buffer.order().equals(ByteOrder.BIG_ENDIAN)) {
-      return Integer32.unpackBigEndianFromBuffer(buffer, index);
+      return Signed24.unpackBigEndianFromBuffer(buffer, index);
     }
-    return Integer32.unpackLittleEndianFromBuffer(buffer, index);
+    return Signed24.unpackLittleEndianFromBuffer(buffer, index);
   }
 
   /**
@@ -335,27 +310,23 @@ public final class Integer32
    * 
    * @param buffer
    *          The buffer from which to unpack data
-   * @return A 32 bit integer value
+   * @return A 24 bit integer value
    */
 
   public static int unpackLittleEndian(
     final byte[] buffer)
   {
     NullCheck.notNull(buffer, "Buffer");
-    if (buffer.length < 4) {
-      throw new IllegalArgumentException("Buffer.length must be >= 4 (is "
+    if (buffer.length < 3) {
+      throw new IllegalArgumentException("Buffer.length must be >= 3 (is "
         + buffer.length
         + ")");
     }
 
-    int r = 0;
-    r |= buffer[3] & 0xFF;
-    r <<= 8;
-    r |= buffer[2] & 0xFF;
-    r <<= 8;
-    r |= buffer[1] & 0xFF;
-    r <<= 8;
-    r |= buffer[0] & 0xFF;
+    final int r0 = (buffer[0] & 0xff);
+    final int r1 = (buffer[1] & 0xff) << 8;
+    final int r2 = buffer[2] << 16;
+    final int r = r0 | r1 | r2;
     return r;
   }
 
@@ -370,7 +341,7 @@ public final class Integer32
    *          The starting index
    * @param buffer
    *          The buffer from which to unpack data.
-   * @return A 32 bit integer value.
+   * @return A 24 bit integer value.
    */
 
   public static int unpackLittleEndianFromBuffer(
@@ -379,17 +350,14 @@ public final class Integer32
   {
     NullCheck.notNull(buffer, "Buffer");
 
-    int r = (buffer.get(index + 3) & 0xff);
-    r <<= 8;
-    r += (buffer.get(index + 2) & 0xff);
-    r <<= 8;
-    r += (buffer.get(index + 1) & 0xff);
-    r <<= 8;
-    r += (buffer.get(index + 0) & 0xff);
+    final int r0 = (buffer.get(index + 0) & 0xff);
+    final int r1 = (buffer.get(index + 1) & 0xff) << 8;
+    final int r2 = buffer.get(index + 2) << 16;
+    final int r = r0 | r1 | r2;
     return r;
   }
 
-  private Integer32()
+  private Signed24()
   {
     throw new UnreachableCodeException();
   }
