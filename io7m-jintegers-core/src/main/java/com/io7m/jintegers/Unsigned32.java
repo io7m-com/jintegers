@@ -55,7 +55,6 @@ public final class Unsigned32
    *          The buffer.
    * @param index
    *          The starting index.
-   * @return An unpacked integer value.
    */
 
   public static void packToBuffer(
