@@ -18,6 +18,7 @@
         <li>Functions for packing and unpacking 16, 24, 32, and 64 bit integers in big or little endian order.</li>
         <li>CheckedMath class that signals overflow and underflow at run time.</li>
         <li>Full unit test coverage.</li>
+        <li><a href="https://www.osgi.org/">OSGi</a>-ready.</li>
         <li>ISC license.</li>
       </ul>
     </subsection>
