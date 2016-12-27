@@ -19,18 +19,27 @@ package com.io7m.jintegers;
 /**
  * Checked arithmetic operations: All operations raise
  * {@link ArithmeticException} on underflow or overflow.
+ *
+ * @deprecated Use {@link Math#addExact(int, int)}, {@link Math#multiplyExact(int,
+ * int)}, etc
  */
 
+@Deprecated
 public final class CheckedMath
 {
+  private CheckedMath()
+  {
+    // Unused.
+  }
+
   /**
    * Return the absolute value of an integer.
-   * 
-   * @param n
-   *          The value.
-   * @return <code>abs(n)</code>
-   * @throws ArithmeticException
-   *           Iff the absolute value would overflow.
+   *
+   * @param n The value.
+   *
+   * @return {@code abs(n)}
+   *
+   * @throws ArithmeticException Iff the absolute value would overflow.
    */
 
   public static int absolute(
@@ -45,12 +54,12 @@ public final class CheckedMath
 
   /**
    * Return the absolute value of an integer.
-   * 
-   * @param n
-   *          The value.
-   * @return <code>abs(n)</code>
-   * @throws ArithmeticException
-   *           Iff the absolute value would overflow.
+   *
+   * @param n The value.
+   *
+   * @return {@code abs(n)}
+   *
+   * @throws ArithmeticException Iff the absolute value would overflow.
    */
 
   public static long absolute(
@@ -65,14 +74,13 @@ public final class CheckedMath
 
   /**
    * Add integers.
-   * 
-   * @param n
-   *          The left value.
-   * @param m
-   *          The right value.
-   * @return <code>n + m</code>
-   * @throws ArithmeticException
-   *           Iff the addition would overflow.
+   *
+   * @param n The left value.
+   * @param m The right value.
+   *
+   * @return {@code n + m}
+   *
+   * @throws ArithmeticException Iff the addition would overflow.
    */
 
   public static int add(
@@ -93,14 +101,13 @@ public final class CheckedMath
 
   /**
    * Add integers.
-   * 
-   * @param n
-   *          The left value.
-   * @param m
-   *          The right value.
-   * @return <code>n + m</code>
-   * @throws ArithmeticException
-   *           Iff the addition would overflow.
+   *
+   * @param n The left value.
+   * @param m The right value.
+   *
+   * @return {@code n + m}
+   *
+   * @throws ArithmeticException Iff the addition would overflow.
    */
 
   public static long add(
@@ -121,14 +128,13 @@ public final class CheckedMath
 
   /**
    * Divide integers.
-   * 
-   * @param n
-   *          The left value.
-   * @param m
-   *          The right value.
-   * @return <code>n / m</code>
-   * @throws ArithmeticException
-   *           Iff the division would overflow.
+   *
+   * @param n The left value.
+   * @param m The right value.
+   *
+   * @return {@code n / m}
+   *
+   * @throws ArithmeticException Iff the division would overflow.
    */
 
   public static int divide(
@@ -144,14 +150,13 @@ public final class CheckedMath
 
   /**
    * Divide integers.
-   * 
-   * @param n
-   *          The left value.
-   * @param m
-   *          The right value.
-   * @return <code>n / m</code>
-   * @throws ArithmeticException
-   *           Iff the division would overflow.
+   *
+   * @param n The left value.
+   * @param m The right value.
+   *
+   * @return {@code n / m}
+   *
+   * @throws ArithmeticException Iff the division would overflow.
    */
 
   public static long divide(
@@ -167,14 +172,13 @@ public final class CheckedMath
 
   /**
    * Multiply integers.
-   * 
-   * @param n
-   *          The left value.
-   * @param m
-   *          The right value.
-   * @return <code>n * m</code>
-   * @throws ArithmeticException
-   *           Iff the multiplication would overflow.
+   *
+   * @param n The left value.
+   * @param m The right value.
+   *
+   * @return {@code n * m}
+   *
+   * @throws ArithmeticException Iff the multiplication would overflow.
    */
 
   public static int multiply(
@@ -197,14 +201,13 @@ public final class CheckedMath
 
   /**
    * Multiply integers.
-   * 
-   * @param n
-   *          The left value.
-   * @param m
-   *          The right value.
-   * @return <code>n * m</code>
-   * @throws ArithmeticException
-   *           Iff the multiplication would overflow.
+   *
+   * @param n The left value.
+   * @param m The right value.
+   *
+   * @return {@code n * m}
+   *
+   * @throws ArithmeticException Iff the multiplication would overflow.
    */
 
   public static int multiply(
@@ -235,15 +238,13 @@ public final class CheckedMath
 
   /**
    * Multiply integers.
-   * 
-   * @param n
-   *          The left value.
-   * @param m
-   *          The right value.
-   * @return <code>n * m</code>
-   * @throws ArithmeticException
-   *           Iff the multiplication would overflow.
-   * 
+   *
+   * @param n The left value.
+   * @param m The right value.
+   *
+   * @return {@code n * m}
+   *
+   * @throws ArithmeticException Iff the multiplication would overflow.
    * @since 2.7.0
    */
 
@@ -267,14 +268,13 @@ public final class CheckedMath
 
   /**
    * Multiply integers.
-   * 
-   * @param n
-   *          The left value.
-   * @param m
-   *          The right value.
-   * @return <code>n * m</code>
-   * @throws ArithmeticException
-   *           Iff the multiplication would overflow.
+   *
+   * @param n The left value.
+   * @param m The right value.
+   *
+   * @return {@code n * m}
+   *
+   * @throws ArithmeticException Iff the multiplication would overflow.
    */
 
   public static long multiply(
@@ -305,12 +305,12 @@ public final class CheckedMath
 
   /**
    * Negate an integer.
-   * 
-   * @param n
-   *          The value.
-   * @return <code>-n</code>
-   * @throws ArithmeticException
-   *           Iff the negation would overflow.
+   *
+   * @param n The value.
+   *
+   * @return {@code -n}
+   *
+   * @throws ArithmeticException Iff the negation would overflow.
    */
 
   public static int negate(
@@ -325,12 +325,12 @@ public final class CheckedMath
 
   /**
    * Negate an integer.
-   * 
-   * @param n
-   *          The value.
-   * @return <code>-n</code>
-   * @throws ArithmeticException
-   *           Iff the negation would overflow.
+   *
+   * @param n The value.
+   *
+   * @return {@code -n}
+   *
+   * @throws ArithmeticException Iff the negation would overflow.
    */
 
   public static long negate(
@@ -345,14 +345,13 @@ public final class CheckedMath
 
   /**
    * Subtract integers.
-   * 
-   * @param n
-   *          The left value.
-   * @param m
-   *          The right value.
-   * @return <code>n - m</code>
-   * @throws ArithmeticException
-   *           Iff the subtraction would overflow.
+   *
+   * @param n The left value.
+   * @param m The right value.
+   *
+   * @return {@code n - m}
+   *
+   * @throws ArithmeticException Iff the subtraction would overflow.
    */
 
   public static int subtract(
@@ -372,14 +371,13 @@ public final class CheckedMath
 
   /**
    * Subtract integers.
-   * 
-   * @param n
-   *          The left value.
-   * @param m
-   *          The right value.
-   * @return <code>n - m</code>
-   * @throws ArithmeticException
-   *           Iff the subtraction would overflow.
+   *
+   * @param n The left value.
+   * @param m The right value.
+   *
+   * @return {@code n - m}
+   *
+   * @throws ArithmeticException Iff the subtraction would overflow.
    */
 
   public static long subtract(
@@ -395,10 +393,5 @@ public final class CheckedMath
       throw new ArithmeticException("Integer overflow: " + n + " - " + m);
     }
     return n - m;
-  }
-
-  private CheckedMath()
-  {
-    // Unused.
   }
 }

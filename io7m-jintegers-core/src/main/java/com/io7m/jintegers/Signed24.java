@@ -16,11 +16,11 @@
 
 package com.io7m.jintegers;
 
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-
 import com.io7m.jnull.NullCheck;
 import com.io7m.junreachable.UnreachableCodeException;
+
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 
 /**
  * 24-bit integer packing/unpacking functions.
@@ -28,14 +28,19 @@ import com.io7m.junreachable.UnreachableCodeException;
 
 public final class Signed24
 {
+  private Signed24()
+  {
+    throw new UnreachableCodeException();
+  }
+
   /**
    * <p>
-   * Pack <code>i</code> into a byte buffer <code>b</code> using a big-endian
-   * encoding such that the most significant byte is in <code>b[0]</code>.
+   * Pack {@code i} into a byte buffer {@code b} using a big-endian
+   * encoding such that the most significant byte is in {@code b[0]}.
    * </p>
-   * 
-   * @param i
-   *          The value to be packed.
+   *
+   * @param i The value to be packed.
+   *
    * @return A byte buffer containing the packed integer data.
    */
 
@@ -43,20 +48,19 @@ public final class Signed24
     final int i)
   {
     final byte[] r = new byte[3];
-    return Signed24.packToBytesBigEndian(i, r);
+    return packToBytesBigEndian(i, r);
   }
 
   /**
    * <p>
-   * Pack <code>i</code> into a byte buffer <code>r</code> using a big-endian
-   * encoding such that the most significant byte is in <code>r[0]</code>.
+   * Pack {@code i} into a byte buffer {@code r} using a big-endian
+   * encoding such that the most significant byte is in {@code r[0]}.
    * </p>
-   * 
-   * @param r
-   *          The buffer
-   * @param i
-   *          The value to be packed.
-   * @return <code>r</code>
+   *
+   * @param r The buffer
+   * @param i The value to be packed.
+   *
+   * @return {@code r}
    */
 
   public static byte[] packToBytesBigEndian(
@@ -65,9 +69,8 @@ public final class Signed24
   {
     NullCheck.notNull(r, "Buffer");
     if (r.length < 3) {
-      throw new IllegalArgumentException("Buffer.length must be >= 3 (is "
-        + r.length
-        + ")");
+      throw new IllegalArgumentException(
+        "Buffer.length must be >= 3 (is " + r.length + ")");
     }
 
     r[0] = (byte) (i >> 16);
@@ -78,17 +81,15 @@ public final class Signed24
 
   /**
    * <p>
-   * Pack <code>i</code> into a byte buffer <code>r</code> using a big-endian
-   * encoding such that the most significant byte is in <code>r[index]</code>.
+   * Pack {@code i} into a byte buffer {@code r} using a big-endian
+   * encoding such that the most significant byte is in {@code r[index]}.
    * </p>
-   * 
-   * @param r
-   *          The buffer.
-   * @param i
-   *          The value to be packed.
-   * @param index
-   *          The starting index.
-   * @return <code>r</code>
+   *
+   * @param r     The buffer.
+   * @param i     The value to be packed.
+   * @param index The starting index.
+   *
+   * @return {@code r}
    */
 
   public static ByteBuffer packToBufferBigEndian(
@@ -106,13 +107,13 @@ public final class Signed24
 
   /**
    * <p>
-   * Pack <code>i</code> into a byte buffer <code>b</code> using a
+   * Pack {@code i} into a byte buffer {@code b} using a
    * little-endian encoding such that the least significant byte is in
-   * <code>b[0]</code>.
+   * {@code b[0]}.
    * </p>
-   * 
-   * @param i
-   *          The value to be packed.
+   *
+   * @param i The value to be packed.
+   *
    * @return A byte buffer containing the packed integer data.
    */
 
@@ -120,21 +121,20 @@ public final class Signed24
     final int i)
   {
     final byte[] r = new byte[3];
-    return Signed24.packToBytesLittleEndian(i, r);
+    return packToBytesLittleEndian(i, r);
   }
 
   /**
    * <p>
-   * Pack <code>i</code> into a byte buffer <code>r</code> using a
+   * Pack {@code i} into a byte buffer {@code r} using a
    * little-endian encoding such that the least significant byte is in
-   * <code>b[0]</code>.
+   * {@code b[0]}.
    * </p>
-   * 
-   * @param r
-   *          The buffer
-   * @param i
-   *          The value to be packed.
-   * @return <code>r</code>
+   *
+   * @param r The buffer
+   * @param i The value to be packed.
+   *
+   * @return {@code r}
    */
 
   public static byte[] packToBytesLittleEndian(
@@ -143,9 +143,8 @@ public final class Signed24
   {
     NullCheck.notNull(r, "Buffer");
     if (r.length < 3) {
-      throw new IllegalArgumentException("Buffer.length must be >= 3 (is "
-        + r.length
-        + ")");
+      throw new IllegalArgumentException(
+        "Buffer.length must be >= 3 (is " + r.length + ")");
     }
 
     r[0] = (byte) (i & 0xff);
@@ -156,18 +155,16 @@ public final class Signed24
 
   /**
    * <p>
-   * Pack <code>i</code> into a byte buffer <code>r</code> using a
+   * Pack {@code i} into a byte buffer {@code r} using a
    * little-endian encoding such that the least significant byte is in
-   * <code>r[index]</code>.
+   * {@code r[index]}.
    * </p>
-   * 
-   * @param r
-   *          The buffer.
-   * @param i
-   *          The value to be packed.
-   * @param index
-   *          The starting index.
-   * @return <code>r</code>
+   *
+   * @param r     The buffer.
+   * @param i     The value to be packed.
+   * @param index The starting index.
+   *
+   * @return {@code r}
    */
 
   public static ByteBuffer packToBufferLittleEndian(
@@ -185,17 +182,15 @@ public final class Signed24
 
   /**
    * <p>
-   * Pack <code>i</code> into a byte buffer <code>r</code> using the encoding
-   * returned by {@link ByteBuffer#order()}, starting at <code>index</code>.
+   * Pack {@code i} into a byte buffer {@code r} using the encoding
+   * returned by {@link ByteBuffer#order()}, starting at {@code index}.
    * </p>
-   * 
-   * @param r
-   *          The buffer.
-   * @param i
-   *          The value to be packed.
-   * @param index
-   *          The starting index.
-   * @return <code>r</code>
+   *
+   * @param r     The buffer.
+   * @param i     The value to be packed.
+   * @param index The starting index.
+   *
+   * @return {@code r}
    */
 
   public static ByteBuffer packToBuffer(
@@ -206,25 +201,25 @@ public final class Signed24
     NullCheck.notNull(r, "Buffer");
 
     if (r.order().equals(ByteOrder.BIG_ENDIAN)) {
-      return Signed24.packToBufferBigEndian(i, r, index);
+      return packToBufferBigEndian(i, r, index);
     }
-    return Signed24.packToBufferLittleEndian(i, r, index);
+    return packToBufferLittleEndian(i, r, index);
   }
 
   /**
    * <p>
-   * Unpack an integer from <code>buffer</code> assuming a big-endian encoding
-   * such that the most significant byte is in <code>b[0]</code>.
+   * Unpack an integer from {@code buffer} assuming a big-endian encoding
+   * such that the most significant byte is in {@code b[0]}.
    * </p>
    * <p>
    * The function throws {@link NullPointerException} if
-   * <code>buffer == null</code> and {@link IllegalArgumentException} if
-   * <code>buffer.length</code> is too small to contain a packed integer value
+   * {@code buffer == null} and {@link IllegalArgumentException} if
+   * {@code buffer.length} is too small to contain a packed integer value
    * of this size.
    * </p>
-   * 
-   * @param buffer
-   *          The buffer from which to unpack data
+   *
+   * @param buffer The buffer from which to unpack data
+   *
    * @return A 24 bit integer value
    */
 
@@ -233,9 +228,8 @@ public final class Signed24
   {
     NullCheck.notNull(buffer, "Buffer");
     if (buffer.length < 3) {
-      throw new IllegalArgumentException("Buffer.length must be >= 3 (is "
-        + buffer.length
-        + ")");
+      throw new IllegalArgumentException(
+        "Buffer.length must be >= 3 (is " + buffer.length + ")");
     }
 
     final int r0 = (buffer[0] << 16);
@@ -247,14 +241,13 @@ public final class Signed24
 
   /**
    * <p>
-   * Unpack an integer from <code>buffer</code> assuming a big-endian encoding
-   * such that the most significant byte is in <code>b[index]</code>.
+   * Unpack an integer from {@code buffer} assuming a big-endian encoding
+   * such that the most significant byte is in {@code b[index]}.
    * </p>
-   * 
-   * @param index
-   *          The starting index in the buffer.
-   * @param buffer
-   *          The buffer from which to unpack data.
+   *
+   * @param index  The starting index in the buffer.
+   * @param buffer The buffer from which to unpack data.
+   *
    * @return A 24 bit integer value.
    */
 
@@ -273,14 +266,13 @@ public final class Signed24
 
   /**
    * <p>
-   * Unpack an integer from <code>buffer</code> using the encoding returned by
-   * {@link ByteBuffer#order()}, starting at <code>index</code>.
+   * Unpack an integer from {@code buffer} using the encoding returned by
+   * {@link ByteBuffer#order()}, starting at {@code index}.
    * </p>
-   * 
-   * @param index
-   *          The starting index
-   * @param buffer
-   *          The buffer from which to unpack data.
+   *
+   * @param index  The starting index
+   * @param buffer The buffer from which to unpack data.
+   *
    * @return A 24 bit integer value.
    */
 
@@ -291,25 +283,25 @@ public final class Signed24
     NullCheck.notNull(buffer, "Buffer");
 
     if (buffer.order().equals(ByteOrder.BIG_ENDIAN)) {
-      return Signed24.unpackFromBufferBigEndian(buffer, index);
+      return unpackFromBufferBigEndian(buffer, index);
     }
-    return Signed24.unpackFromBufferLittleEndian(buffer, index);
+    return unpackFromBufferLittleEndian(buffer, index);
   }
 
   /**
    * <p>
-   * Unpack an integer from <code>buffer</code> assuming a little-endian
-   * encoding such that the least significant byte is in <code>b[0]</code>.
+   * Unpack an integer from {@code buffer} assuming a little-endian
+   * encoding such that the least significant byte is in {@code b[0]}.
    * </p>
    * <p>
    * The function throws {@link NullPointerException} if
-   * <code>buffer == null</code> and {@link IllegalArgumentException} if
-   * <code>buffer.length</code> is too small to contain a packed integer value
+   * {@code buffer == null} and {@link IllegalArgumentException} if
+   * {@code buffer.length} is too small to contain a packed integer value
    * of this size.
    * </p>
-   * 
-   * @param buffer
-   *          The buffer from which to unpack data
+   *
+   * @param buffer The buffer from which to unpack data
+   *
    * @return A 24 bit integer value
    */
 
@@ -318,9 +310,8 @@ public final class Signed24
   {
     NullCheck.notNull(buffer, "Buffer");
     if (buffer.length < 3) {
-      throw new IllegalArgumentException("Buffer.length must be >= 3 (is "
-        + buffer.length
-        + ")");
+      throw new IllegalArgumentException(
+        "Buffer.length must be >= 3 (is " + buffer.length + ")");
     }
 
     final int r0 = (buffer[0] & 0xff);
@@ -332,15 +323,14 @@ public final class Signed24
 
   /**
    * <p>
-   * Unpack an integer from <code>buffer</code> assuming a little-endian
-   * encoding such that the least significant byte is in <code>b[index]</code>
+   * Unpack an integer from {@code buffer} assuming a little-endian
+   * encoding such that the least significant byte is in {@code b[index]}
    * .
    * </p>
-   * 
-   * @param index
-   *          The starting index
-   * @param buffer
-   *          The buffer from which to unpack data.
+   *
+   * @param index  The starting index
+   * @param buffer The buffer from which to unpack data.
+   *
    * @return A 24 bit integer value.
    */
 
@@ -355,10 +345,5 @@ public final class Signed24
     final int r2 = buffer.get(index + 2) << 16;
     final int r = r0 | r1 | r2;
     return r;
-  }
-
-  private Signed24()
-  {
-    throw new UnreachableCodeException();
   }
 }

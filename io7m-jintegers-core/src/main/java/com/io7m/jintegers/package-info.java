@@ -14,7 +14,8 @@
  * IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-@NonNullByDefault package com.io7m.jintegers;
+@NonNullByDefault
+package com.io7m.jintegers;
 
 import com.io7m.jnull.NonNullByDefault;
 
