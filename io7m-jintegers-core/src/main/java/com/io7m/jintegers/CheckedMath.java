@@ -19,8 +19,12 @@ package com.io7m.jintegers;
 /**
  * Checked arithmetic operations: All operations raise
  * {@link ArithmeticException} on underflow or overflow.
+ *
+ * @deprecated Use {@link Math#addExact(int, int)}, {@link Math#multiplyExact(int,
+ * int)}, etc
  */
 
+@Deprecated
 public final class CheckedMath
 {
   private CheckedMath()
