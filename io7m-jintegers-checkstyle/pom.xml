@@ -8,7 +8,7 @@
   <parent>
     <groupId>com.io7m.jintegers</groupId>
     <artifactId>io7m-jintegers</artifactId>
-    <version>1.1.0-SNAPSHOT</version>
+    <version>1.1.0</version>
   </parent>
   <artifactId>io7m-jintegers-checkstyle</artifactId>
 
