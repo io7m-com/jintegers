@@ -48,7 +48,7 @@ public final class Signed32
     final int i)
   {
     final byte[] r = new byte[4];
-    return Signed32.packToBytesBigEndian(i, r);
+    return packToBytesBigEndian(i, r);
   }
 
   /**
@@ -69,9 +69,8 @@ public final class Signed32
   {
     NullCheck.notNull(r, "Buffer");
     if (r.length < 4) {
-      throw new IllegalArgumentException("Buffer.length must be >= 4 (is "
-                                           + r.length
-                                           + ")");
+      throw new IllegalArgumentException(
+        "Buffer.length must be >= 4 (is " + r.length + ")");
     }
 
     int x = i;
@@ -132,7 +131,7 @@ public final class Signed32
     final int i)
   {
     final byte[] r = new byte[4];
-    return Signed32.packToBytesLittleEndian(i, r);
+    return packToBytesLittleEndian(i, r);
   }
 
   /**
@@ -154,9 +153,8 @@ public final class Signed32
   {
     NullCheck.notNull(r, "Buffer");
     if (r.length < 4) {
-      throw new IllegalArgumentException("Buffer.length must be >= 4 (is "
-                                           + r.length
-                                           + ")");
+      throw new IllegalArgumentException(
+        "Buffer.length must be >= 4 (is " + r.length + ")");
     }
 
     int x = i;
@@ -223,9 +221,9 @@ public final class Signed32
     NullCheck.notNull(r, "Buffer");
 
     if (r.order().equals(ByteOrder.BIG_ENDIAN)) {
-      return Signed32.packToBufferBigEndian(i, r, index);
+      return packToBufferBigEndian(i, r, index);
     }
-    return Signed32.packToBufferLittleEndian(i, r, index);
+    return packToBufferLittleEndian(i, r, index);
   }
 
   /**
@@ -250,9 +248,8 @@ public final class Signed32
   {
     NullCheck.notNull(buffer, "Buffer");
     if (buffer.length < 4) {
-      throw new IllegalArgumentException("Buffer.length must be >= 4 (is "
-                                           + buffer.length
-                                           + ")");
+      throw new IllegalArgumentException(
+        "Buffer.length must be >= 4 (is " + buffer.length + ")");
     }
 
     int r = 0;
@@ -313,9 +310,9 @@ public final class Signed32
     NullCheck.notNull(buffer, "Buffer");
 
     if (buffer.order().equals(ByteOrder.BIG_ENDIAN)) {
-      return Signed32.unpackFromBufferBigEndian(buffer, index);
+      return unpackFromBufferBigEndian(buffer, index);
     }
-    return Signed32.unpackFromBufferLittleEndian(buffer, index);
+    return unpackFromBufferLittleEndian(buffer, index);
   }
 
   /**
@@ -340,9 +337,8 @@ public final class Signed32
   {
     NullCheck.notNull(buffer, "Buffer");
     if (buffer.length < 4) {
-      throw new IllegalArgumentException("Buffer.length must be >= 4 (is "
-                                           + buffer.length
-                                           + ")");
+      throw new IllegalArgumentException(
+        "Buffer.length must be >= 4 (is " + buffer.length + ")");
     }
 
     int r = 0;

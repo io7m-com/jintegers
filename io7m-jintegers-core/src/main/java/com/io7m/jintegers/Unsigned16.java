@@ -102,9 +102,9 @@ public final class Unsigned16
     NullCheck.notNull(data, "Buffer");
 
     if (data.order().equals(ByteOrder.BIG_ENDIAN)) {
-      Unsigned16.packToBufferBigEndian(x, data, index);
+      packToBufferBigEndian(x, data, index);
     } else {
-      Unsigned16.packToBufferLittleEndian(x, data, index);
+      packToBufferLittleEndian(x, data, index);
     }
   }
 
@@ -147,9 +147,9 @@ public final class Unsigned16
     NullCheck.notNull(data, "Buffer");
 
     if (data.order().equals(ByteOrder.BIG_ENDIAN)) {
-      return Unsigned16.unpackFromBufferBigEndian(data, index);
+      return unpackFromBufferBigEndian(data, index);
     }
-    return Unsigned16.unpackFromBufferLittleEndian(data, index);
+    return unpackFromBufferLittleEndian(data, index);
   }
 
   /**

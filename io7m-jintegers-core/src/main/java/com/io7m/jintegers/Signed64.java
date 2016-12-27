@@ -48,7 +48,7 @@ public final class Signed64
     final long i)
   {
     final byte[] r = new byte[8];
-    return Signed64.packToBytesBigEndian(i, r);
+    return packToBytesBigEndian(i, r);
   }
 
   /**
@@ -69,9 +69,8 @@ public final class Signed64
   {
     NullCheck.notNull(r, "Buffer");
     if (r.length < 8) {
-      throw new IllegalArgumentException("Buffer.length must be >= 8 (is "
-                                           + r.length
-                                           + ")");
+      throw new IllegalArgumentException(
+        "Buffer.length must be >= 8 (is " + r.length + ")");
     }
 
     long x = i;
@@ -148,7 +147,7 @@ public final class Signed64
     final long i)
   {
     final byte[] r = new byte[8];
-    return Signed64.packToBytesLittleEndian(i, r);
+    return packToBytesLittleEndian(i, r);
   }
 
   /**
@@ -170,9 +169,8 @@ public final class Signed64
   {
     NullCheck.notNull(r, "Buffer");
     if (r.length < 8) {
-      throw new IllegalArgumentException("Buffer.length must be >= 8 (is "
-                                           + r.length
-                                           + ")");
+      throw new IllegalArgumentException(
+        "Buffer.length must be >= 8 (is " + r.length + ")");
     }
 
     long x = i;
@@ -255,9 +253,9 @@ public final class Signed64
     NullCheck.notNull(r, "Buffer");
 
     if (r.order().equals(ByteOrder.BIG_ENDIAN)) {
-      return Signed64.packToBufferBigEndian(i, r, index);
+      return packToBufferBigEndian(i, r, index);
     }
-    return Signed64.packToBufferLittleEndian(i, r, index);
+    return packToBufferLittleEndian(i, r, index);
   }
 
   /**
@@ -282,9 +280,8 @@ public final class Signed64
   {
     NullCheck.notNull(buffer, "Buffer");
     if (buffer.length < 8) {
-      throw new IllegalArgumentException("Buffer.length must be >= 8 (is "
-                                           + buffer.length
-                                           + ")");
+      throw new IllegalArgumentException(
+        "Buffer.length must be >= 8 (is " + buffer.length + ")");
     }
 
     long r = 0;
@@ -361,9 +358,9 @@ public final class Signed64
     NullCheck.notNull(buffer, "Buffer");
 
     if (buffer.order().equals(ByteOrder.BIG_ENDIAN)) {
-      return Signed64.unpackFromBufferBigEndian(buffer, index);
+      return unpackFromBufferBigEndian(buffer, index);
     }
-    return Signed64.unpackFromBufferLittleEndian(buffer, index);
+    return unpackFromBufferLittleEndian(buffer, index);
   }
 
   /**
@@ -388,9 +385,8 @@ public final class Signed64
   {
     NullCheck.notNull(buffer, "Buffer");
     if (buffer.length < 8) {
-      throw new IllegalArgumentException("Buffer.length must be >= 8 (is "
-                                           + buffer.length
-                                           + ")");
+      throw new IllegalArgumentException(
+        "Buffer.length must be >= 8 (is " + buffer.length + ")");
     }
 
     long r = 0;

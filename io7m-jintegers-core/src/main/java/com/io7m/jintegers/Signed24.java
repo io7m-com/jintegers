@@ -48,7 +48,7 @@ public final class Signed24
     final int i)
   {
     final byte[] r = new byte[3];
-    return Signed24.packToBytesBigEndian(i, r);
+    return packToBytesBigEndian(i, r);
   }
 
   /**
@@ -69,9 +69,8 @@ public final class Signed24
   {
     NullCheck.notNull(r, "Buffer");
     if (r.length < 3) {
-      throw new IllegalArgumentException("Buffer.length must be >= 3 (is "
-                                           + r.length
-                                           + ")");
+      throw new IllegalArgumentException(
+        "Buffer.length must be >= 3 (is " + r.length + ")");
     }
 
     r[0] = (byte) (i >> 16);
@@ -122,7 +121,7 @@ public final class Signed24
     final int i)
   {
     final byte[] r = new byte[3];
-    return Signed24.packToBytesLittleEndian(i, r);
+    return packToBytesLittleEndian(i, r);
   }
 
   /**
@@ -144,9 +143,8 @@ public final class Signed24
   {
     NullCheck.notNull(r, "Buffer");
     if (r.length < 3) {
-      throw new IllegalArgumentException("Buffer.length must be >= 3 (is "
-                                           + r.length
-                                           + ")");
+      throw new IllegalArgumentException(
+        "Buffer.length must be >= 3 (is " + r.length + ")");
     }
 
     r[0] = (byte) (i & 0xff);
@@ -203,9 +201,9 @@ public final class Signed24
     NullCheck.notNull(r, "Buffer");
 
     if (r.order().equals(ByteOrder.BIG_ENDIAN)) {
-      return Signed24.packToBufferBigEndian(i, r, index);
+      return packToBufferBigEndian(i, r, index);
     }
-    return Signed24.packToBufferLittleEndian(i, r, index);
+    return packToBufferLittleEndian(i, r, index);
   }
 
   /**
@@ -230,9 +228,8 @@ public final class Signed24
   {
     NullCheck.notNull(buffer, "Buffer");
     if (buffer.length < 3) {
-      throw new IllegalArgumentException("Buffer.length must be >= 3 (is "
-                                           + buffer.length
-                                           + ")");
+      throw new IllegalArgumentException(
+        "Buffer.length must be >= 3 (is " + buffer.length + ")");
     }
 
     final int r0 = (buffer[0] << 16);
@@ -286,9 +283,9 @@ public final class Signed24
     NullCheck.notNull(buffer, "Buffer");
 
     if (buffer.order().equals(ByteOrder.BIG_ENDIAN)) {
-      return Signed24.unpackFromBufferBigEndian(buffer, index);
+      return unpackFromBufferBigEndian(buffer, index);
     }
-    return Signed24.unpackFromBufferLittleEndian(buffer, index);
+    return unpackFromBufferLittleEndian(buffer, index);
   }
 
   /**
@@ -313,9 +310,8 @@ public final class Signed24
   {
     NullCheck.notNull(buffer, "Buffer");
     if (buffer.length < 3) {
-      throw new IllegalArgumentException("Buffer.length must be >= 3 (is "
-                                           + buffer.length
-                                           + ")");
+      throw new IllegalArgumentException(
+        "Buffer.length must be >= 3 (is " + buffer.length + ")");
     }
 
     final int r0 = (buffer[0] & 0xff);
