@@ -16,11 +16,11 @@
 
 package com.io7m.jintegers;
 
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-
 import com.io7m.jnull.NullCheck;
 import com.io7m.junreachable.UnreachableCodeException;
+
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 
 /**
  * Unsigned 16-bit integer handling.
@@ -28,19 +28,22 @@ import com.io7m.junreachable.UnreachableCodeException;
 
 public final class Unsigned16
 {
+  private Unsigned16()
+  {
+    throw new UnreachableCodeException();
+  }
+
   /**
    * <p>
-   * Pack <code>i</code> into a byte buffer <code>r</code> using a big-endian
-   * encoding such that the most significant byte is in <code>r[index]</code>.
+   * Pack {@code i} into a byte buffer {@code r} using a big-endian
+   * encoding such that the most significant byte is in {@code r[index]}.
    * </p>
-   * 
-   * @param r
-   *          The buffer.
-   * @param i
-   *          The value to be packed.
-   * @param index
-   *          The starting index.
-   * @return <code>r</code>
+   *
+   * @param r     The buffer.
+   * @param i     The value to be packed.
+   * @param index The starting index.
+   *
+   * @return {@code r}
    */
 
   public static ByteBuffer packToBufferBigEndian(
@@ -58,18 +61,16 @@ public final class Unsigned16
 
   /**
    * <p>
-   * Pack <code>i</code> into a byte buffer <code>r</code> using a
+   * Pack {@code i} into a byte buffer {@code r} using a
    * little-endian encoding such that the least significant byte is in
-   * <code>r[index]</code>.
+   * {@code r[index]}.
    * </p>
-   * 
-   * @param r
-   *          The buffer.
-   * @param i
-   *          The value to be packed.
-   * @param index
-   *          The starting index.
-   * @return <code>r</code>
+   *
+   * @param r     The buffer.
+   * @param i     The value to be packed.
+   * @param index The starting index.
+   *
+   * @return {@code r}
    */
 
   public static ByteBuffer packToBufferLittleEndian(
@@ -87,13 +88,10 @@ public final class Unsigned16
 
   /**
    * Pack an unsigned 16-bit integer into the buffer.
-   * 
-   * @param x
-   *          The value.
-   * @param data
-   *          The buffer.
-   * @param index
-   *          The starting index.
+   *
+   * @param x     The value.
+   * @param data  The buffer.
+   * @param index The starting index.
    */
 
   public static void packToBuffer(
@@ -112,14 +110,13 @@ public final class Unsigned16
 
   /**
    * <p>
-   * Unpack an integer from <code>buffer</code> assuming a big-endian encoding
-   * such that the most significant byte is in <code>b[index]</code>.
+   * Unpack an integer from {@code buffer} assuming a big-endian encoding
+   * such that the most significant byte is in {@code b[index]}.
    * </p>
-   * 
-   * @param index
-   *          The starting index in the buffer.
-   * @param buffer
-   *          The buffer from which to unpack data.
+   *
+   * @param index  The starting index in the buffer.
+   * @param buffer The buffer from which to unpack data.
+   *
    * @return A 16 bit integer value.
    */
 
@@ -136,11 +133,10 @@ public final class Unsigned16
 
   /**
    * Unpack an unsigned 16-bit integer from the buffer.
-   * 
-   * @param data
-   *          The buffer.
-   * @param index
-   *          The starting index.
+   *
+   * @param data  The buffer.
+   * @param index The starting index.
+   *
    * @return An unpacked integer value.
    */
 
@@ -158,15 +154,13 @@ public final class Unsigned16
 
   /**
    * <p>
-   * Unpack an integer from <code>buffer</code> assuming a little-endian
-   * encoding such that the least significant byte is in <code>b[index]</code>
-   * .
+   * Unpack an integer from {@code buffer} assuming a little-endian
+   * encoding such that the least significant byte is in {@code b[index]}.
    * </p>
-   * 
-   * @param index
-   *          The starting index
-   * @param buffer
-   *          The buffer from which to unpack data.
+   *
+   * @param index  The starting index
+   * @param buffer The buffer from which to unpack data.
+   *
    * @return A 16 bit integer value.
    */
 
@@ -179,10 +173,5 @@ public final class Unsigned16
     final int b0 = buffer.get(index + 0) & 0xff;
     final int b1 = (buffer.get(index + 1) & 0xff) << 8;
     return b0 | b1;
-  }
-
-  private Unsigned16()
-  {
-    throw new UnreachableCodeException();
   }
 }

@@ -16,10 +16,10 @@
 
 package com.io7m.jintegers;
 
-import java.nio.ByteBuffer;
-
 import com.io7m.jnull.NullCheck;
 import com.io7m.junreachable.UnreachableCodeException;
+
+import java.nio.ByteBuffer;
 
 /**
  * Unsigned 8-bit integer handling.
@@ -27,13 +27,17 @@ import com.io7m.junreachable.UnreachableCodeException;
 
 public final class Unsigned8
 {
+  private Unsigned8()
+  {
+    throw new UnreachableCodeException();
+  }
+
   /**
    * Unpack an unsigned 8-bit integer from the buffer.
-   * 
-   * @param data
-   *          The buffer.
-   * @param index
-   *          The starting index.
+   *
+   * @param data  The buffer.
+   * @param index The starting index.
+   *
    * @return An unpacked integer value.
    */
 
@@ -48,13 +52,10 @@ public final class Unsigned8
 
   /**
    * Pack an unsigned 8-bit integer into the buffer.
-   * 
-   * @param x
-   *          The value.
-   * @param data
-   *          The buffer.
-   * @param index
-   *          The starting index.
+   *
+   * @param x     The value.
+   * @param data  The buffer.
+   * @param index The starting index.
    */
 
   public static void packToBuffer(
@@ -64,10 +65,5 @@ public final class Unsigned8
   {
     NullCheck.notNull(data, "Buffer");
     data.put(index, (byte) (x & 0xff));
-  }
-
-  private Unsigned8()
-  {
-    throw new UnreachableCodeException();
   }
 }
