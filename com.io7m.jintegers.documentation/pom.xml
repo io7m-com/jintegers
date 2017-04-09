@@ -8,7 +8,7 @@
   <parent>
     <groupId>com.io7m.jintegers</groupId>
     <artifactId>com.io7m.jintegers</artifactId>
-    <version>1.1.0</version>
+    <version>1.1.1</version>
   </parent>
   <artifactId>com.io7m.jintegers.documentation</artifactId>
 
@@ -16,6 +16,10 @@
   <name>com.io7m.jintegers.documentation</name>
   <description>Integer handling (Documentation)</description>
   <url>http://io7m.github.io/jintegers/</url>
+
+  <properties>
+    <io7m.api.previousArtifactId>io7m-jintegers-documentation</io7m.api.previousArtifactId>
+  </properties>
 
   <properties>
     <io7m.api.previousArtifactId>io7m-jintegers-documentation</io7m.api.previousArtifactId>
