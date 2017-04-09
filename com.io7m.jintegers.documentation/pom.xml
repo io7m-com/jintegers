@@ -19,10 +19,6 @@
 
   <properties>
     <io7m.api.previousArtifactId>io7m-jintegers-documentation</io7m.api.previousArtifactId>
-  </properties>
-
-  <properties>
-    <io7m.api.previousArtifactId>io7m-jintegers-documentation</io7m.api.previousArtifactId>
     <io7m.api.japicmp.skip>true</io7m.api.japicmp.skip>
     <mdep.analyze.skip>true</mdep.analyze.skip>
   </properties>
