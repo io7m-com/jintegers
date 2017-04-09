@@ -7,15 +7,21 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.io7m.jintegers</groupId>
-    <artifactId>io7m-jintegers</artifactId>
+    <artifactId>com.io7m.jintegers</artifactId>
     <version>1.1.0</version>
   </parent>
-  <artifactId>io7m-jintegers-documentation</artifactId>
+  <artifactId>com.io7m.jintegers.documentation</artifactId>
 
   <packaging>jar</packaging>
-  <name>io7m-jintegers-documentation</name>
+  <name>com.io7m.jintegers.documentation</name>
   <description>Integer handling (Documentation)</description>
   <url>http://io7m.github.io/jintegers/</url>
+
+  <properties>
+    <io7m.api.previousArtifactId>io7m-jintegers-documentation</io7m.api.previousArtifactId>
+    <io7m.api.japicmp.skip>true</io7m.api.japicmp.skip>
+    <mdep.analyze.skip>true</mdep.analyze.skip>
+  </properties>
 
   <scm>
     <url>${project.parent.scm.url}</url>
@@ -25,8 +31,14 @@
 
   <dependencies>
     <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>com.io7m.jintegers.core</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+
+    <dependency>
       <groupId>com.io7m.jnull</groupId>
-      <artifactId>io7m-jnull-core</artifactId>
+      <artifactId>com.io7m.jnull.core</artifactId>
     </dependency>
   </dependencies>
 
