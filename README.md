@@ -6,3 +6,5 @@ jintegers
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/d96c0a1dd9f94108be32dd4fe59255b3)](https://www.codacy.com/app/github_79/jintegers?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=io7m/jintegers&amp;utm_campaign=Badge_Grade)
 
 See https://io7m.github.io/jintegers/ for more information.
+
+![jintegers](./src/site/resources/jintegers.jpg?raw=true)
