@@ -17,21 +17,7 @@
   <description>Integer handling (Core)</description>
   <url>http://io7m.github.io/jintegers/</url>
 
-  <properties>
-    <io7m.api.previousArtifactId>io7m-jintegers-core</io7m.api.previousArtifactId>
-  </properties>
-
-  <scm>
-    <url>${project.parent.scm.url}</url>
-    <connection>${project.parent.scm.connection}</connection>
-    <developerConnection>${project.parent.scm.developerConnection}</developerConnection>
-  </scm>
-
   <dependencies>
-    <dependency>
-      <groupId>com.io7m.jnull</groupId>
-      <artifactId>com.io7m.jnull.core</artifactId>
-    </dependency>
     <dependency>
       <groupId>com.io7m.junreachable</groupId>
       <artifactId>com.io7m.junreachable.core</artifactId>

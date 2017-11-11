@@ -16,7 +16,7 @@
 
 package com.io7m.jintegers;
 
-import com.io7m.jnull.NullCheck;
+import java.util.Objects;
 import com.io7m.junreachable.UnreachableCodeException;
 
 import java.nio.ByteBuffer;
@@ -51,7 +51,7 @@ public final class Unsigned16
     final ByteBuffer r,
     final int index)
   {
-    NullCheck.notNull(r, "Buffer");
+    Objects.requireNonNull(r, "Buffer");
 
     final short x = (short) i;
     r.put(index + 0, (byte) (x >> 8));
@@ -78,7 +78,7 @@ public final class Unsigned16
     final ByteBuffer r,
     final int index)
   {
-    NullCheck.notNull(r, "Buffer");
+    Objects.requireNonNull(r, "Buffer");
 
     final short x = (short) i;
     r.put(index + 0, (byte) (x & 0xff));
@@ -99,7 +99,7 @@ public final class Unsigned16
     final ByteBuffer data,
     final int index)
   {
-    NullCheck.notNull(data, "Buffer");
+    Objects.requireNonNull(data, "Buffer");
 
     if (data.order().equals(ByteOrder.BIG_ENDIAN)) {
       packToBufferBigEndian(x, data, index);
@@ -124,7 +124,7 @@ public final class Unsigned16
     final ByteBuffer buffer,
     final int index)
   {
-    NullCheck.notNull(buffer, "Buffer");
+    Objects.requireNonNull(buffer, "Buffer");
 
     final int b0 = (buffer.get(index + 0) & 0xff) << 8;
     final int b1 = buffer.get(index + 1) & 0xff;
@@ -144,7 +144,7 @@ public final class Unsigned16
     final ByteBuffer data,
     final int index)
   {
-    NullCheck.notNull(data, "Buffer");
+    Objects.requireNonNull(data, "Buffer");
 
     if (data.order().equals(ByteOrder.BIG_ENDIAN)) {
       return unpackFromBufferBigEndian(data, index);
@@ -168,7 +168,7 @@ public final class Unsigned16
     final ByteBuffer buffer,
     final int index)
   {
-    NullCheck.notNull(buffer, "Buffer");
+    Objects.requireNonNull(buffer, "Buffer");
 
     final int b0 = buffer.get(index + 0) & 0xff;
     final int b1 = (buffer.get(index + 1) & 0xff) << 8;

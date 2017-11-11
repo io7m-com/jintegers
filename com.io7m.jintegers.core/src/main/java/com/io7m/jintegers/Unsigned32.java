@@ -16,7 +16,7 @@
 
 package com.io7m.jintegers;
 
-import com.io7m.jnull.NullCheck;
+import java.util.Objects;
 import com.io7m.junreachable.UnreachableCodeException;
 
 import java.nio.ByteBuffer;
@@ -45,7 +45,7 @@ public final class Unsigned32
     final ByteBuffer data,
     final int index)
   {
-    NullCheck.notNull(data, "Buffer");
+    Objects.requireNonNull(data, "Buffer");
     final long x = data.getInt(index);
     return (x & 0xffffffffL);
   }
@@ -63,7 +63,7 @@ public final class Unsigned32
     final ByteBuffer data,
     final int index)
   {
-    NullCheck.notNull(data, "Buffer");
+    Objects.requireNonNull(data, "Buffer");
     data.putInt(index, (int) (x & 0xffffffffL));
   }
 }

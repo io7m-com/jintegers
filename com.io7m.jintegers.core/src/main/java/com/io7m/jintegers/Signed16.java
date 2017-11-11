@@ -16,7 +16,7 @@
 
 package com.io7m.jintegers;
 
-import com.io7m.jnull.NullCheck;
+import java.util.Objects;
 import com.io7m.junreachable.UnreachableCodeException;
 
 import java.nio.ByteBuffer;
@@ -67,7 +67,7 @@ public final class Signed16
     final int i,
     final byte[] r)
   {
-    NullCheck.notNull(r, "Buffer");
+    Objects.requireNonNull(r, "Buffer");
     if (r.length < 2) {
       throw new IllegalArgumentException(
         "Buffer.length must be >= 2 (is " + r.length + ")");
@@ -97,7 +97,7 @@ public final class Signed16
     final ByteBuffer r,
     final int index)
   {
-    NullCheck.notNull(r, "Buffer");
+    Objects.requireNonNull(r, "Buffer");
 
     final short x = (short) i;
     r.put(index + 0, (byte) (x >> 8));
@@ -141,7 +141,7 @@ public final class Signed16
     final int i,
     final byte[] r)
   {
-    NullCheck.notNull(r, "Buffer");
+    Objects.requireNonNull(r, "Buffer");
     if (r.length < 2) {
       throw new IllegalArgumentException(
         "Buffer.length must be >= 2 (is " + r.length + ")");
@@ -172,7 +172,7 @@ public final class Signed16
     final ByteBuffer r,
     final int index)
   {
-    NullCheck.notNull(r, "Buffer");
+    Objects.requireNonNull(r, "Buffer");
 
     final short x = (short) i;
     r.put(index + 0, (byte) (x & 0xff));
@@ -198,7 +198,7 @@ public final class Signed16
     final ByteBuffer r,
     final int index)
   {
-    NullCheck.notNull(r, "Buffer");
+    Objects.requireNonNull(r, "Buffer");
 
     if (r.order().equals(ByteOrder.BIG_ENDIAN)) {
       return packToBufferBigEndian(i, r, index);
@@ -225,7 +225,7 @@ public final class Signed16
   public static int unpackFromBytesBigEndian(
     final byte[] buffer)
   {
-    NullCheck.notNull(buffer, "Buffer");
+    Objects.requireNonNull(buffer, "Buffer");
     if (buffer.length < 2) {
       throw new IllegalArgumentException(
         "Buffer.length must be >= 2 (is " + buffer.length + ")");
@@ -253,7 +253,7 @@ public final class Signed16
     final ByteBuffer buffer,
     final int index)
   {
-    NullCheck.notNull(buffer, "Buffer");
+    Objects.requireNonNull(buffer, "Buffer");
 
     short r = 0;
     r |= buffer.get(index + 0) << 8;
@@ -277,7 +277,7 @@ public final class Signed16
     final ByteBuffer buffer,
     final int index)
   {
-    NullCheck.notNull(buffer, "Buffer");
+    Objects.requireNonNull(buffer, "Buffer");
 
     if (buffer.order().equals(ByteOrder.BIG_ENDIAN)) {
       return unpackFromBufferBigEndian(buffer, index);
@@ -304,7 +304,7 @@ public final class Signed16
   public static int unpackFromBytesLittleEndian(
     final byte[] buffer)
   {
-    NullCheck.notNull(buffer, "Buffer");
+    Objects.requireNonNull(buffer, "Buffer");
     if (buffer.length < 2) {
       throw new IllegalArgumentException(
         "Buffer.length must be >= 2 (is " + buffer.length + ")");
@@ -333,7 +333,7 @@ public final class Signed16
     final ByteBuffer buffer,
     final int index)
   {
-    NullCheck.notNull(buffer, "Buffer");
+    Objects.requireNonNull(buffer, "Buffer");
 
     short r = 0;
     r |= buffer.get(index + 0) & 0xff;
