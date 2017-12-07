@@ -4,6 +4,7 @@
     <li>Functions for packing and unpacking 16, 24, 32, and 64 bit integers in big or little endian order.</li>
     <li>Full unit test coverage.</li>
     <li><a href="https://www.osgi.org/">OSGi</a>-ready.</li>
+    <li><a href="https://en.wikipedia.org/wiki/Java_Platform_Module_System">JPMS</a>-ready</li>
     <li>ISC license.</li>
   </ul>
 </div>
