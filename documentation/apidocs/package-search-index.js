@@ -1,0 +1,1 @@
+packageSearchIndex = [{"m":"com.io7m.jintegers.core","l":"com.io7m.jintegers"},{"m":"com.io7m.jintegers.documentation","l":"com.io7m.jintegers.documentation"}]
