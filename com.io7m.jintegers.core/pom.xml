@@ -8,7 +8,7 @@
   <parent>
     <groupId>com.io7m.jintegers</groupId>
     <artifactId>com.io7m.jintegers</artifactId>
-    <version>1.1.1</version>
+    <version>2.0.0</version>
   </parent>
   <artifactId>com.io7m.jintegers.core</artifactId>
 
@@ -17,21 +17,7 @@
   <description>Integer handling (Core)</description>
   <url>http://io7m.github.io/jintegers/</url>
 
-  <properties>
-    <io7m.api.previousArtifactId>io7m-jintegers-core</io7m.api.previousArtifactId>
-  </properties>
-
-  <scm>
-    <url>${project.parent.scm.url}</url>
-    <connection>${project.parent.scm.connection}</connection>
-    <developerConnection>${project.parent.scm.developerConnection}</developerConnection>
-  </scm>
-
   <dependencies>
-    <dependency>
-      <groupId>com.io7m.jnull</groupId>
-      <artifactId>com.io7m.jnull.core</artifactId>
-    </dependency>
     <dependency>
       <groupId>com.io7m.junreachable</groupId>
       <artifactId>com.io7m.junreachable.core</artifactId>
@@ -64,6 +50,12 @@
             </Export-Package>
           </instructions>
         </configuration>
+      </plugin>
+
+      <!-- Determine test coverage -->
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
       </plugin>
     </plugins>
   </build>
