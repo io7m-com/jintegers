@@ -1,38 +1,43 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<c:changelog xmlns:c="urn:com.io7m.changelog:4.0" project="com.io7m.jintegers">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<c:changelog project="com.io7m.jintegers" xmlns:c="urn:com.io7m.changelog:4.0">
   <c:releases>
-    <c:release date="2014-06-22T00:00:00+00:00" ticket-system="com.io7m.fossil.jintegers" version="1.0.0">
+    <c:release date="2014-06-22T00:00:00+00:00" is-open="false" ticket-system="com.io7m.fossil.jintegers" version="1.0.0">
       <c:changes>
         <c:change date="2014-06-22T00:00:00+00:00" summary="Initial release."/>
       </c:changes>
     </c:release>
-    <c:release date="2015-08-09T00:00:00+00:00" ticket-system="com.github.io7m.jintegers" version="1.0.1">
+    <c:release date="2015-08-09T00:00:00+00:00" is-open="false" ticket-system="com.github.io7m.jintegers" version="1.0.1">
       <c:changes>
         <c:change date="2015-08-09T00:00:00+00:00" summary="Migrate to GitHub."/>
         <c:change date="2014-12-03T00:00:00+00:00" summary="Ensure source jars for unit tests are created."/>
       </c:changes>
     </c:release>
-    <c:release date="2016-08-03T00:00:00+00:00" ticket-system="com.github.io7m.jintegers" version="1.0.2">
+    <c:release date="2016-08-03T00:00:00+00:00" is-open="false" ticket-system="com.github.io7m.jintegers" version="1.0.2">
       <c:changes>
         <c:change date="2016-08-03T00:00:00+00:00" summary="Update POM files to 2016 standards. Update plugins."/>
         <c:change date="2016-08-03T00:00:00+00:00" summary="The packaged jar is now an OSGi bundle."/>
         <c:change compatible="false" date="2016-08-03T00:00:00+00:00" summary="The package will no longer compile on JDK 6 due to Checkstyle, but the compiled code is still JDK 6 compatible."/>
       </c:changes>
     </c:release>
-    <c:release date="2016-12-27T00:00:00+00:00" ticket-system="com.github.io7m.jintegers" version="1.1.0">
+    <c:release date="2016-12-27T00:00:00+00:00" is-open="false" ticket-system="com.github.io7m.jintegers" version="1.1.0">
       <c:changes>
         <c:change compatible="false" date="2016-12-27T00:00:00+00:00" summary="Deprecate CheckedMath (use Java 8's Math module instead)."/>
       </c:changes>
     </c:release>
-    <c:release date="2017-04-09T00:00:00+00:00" ticket-system="com.github.io7m.jintegers" version="1.1.1">
+    <c:release date="2017-04-09T00:00:00+00:00" is-open="false" ticket-system="com.github.io7m.jintegers" version="1.1.1">
       <c:changes>
         <c:change compatible="false" date="2017-04-09T00:00:00+00:00" summary="Rename project. Use the new primogenitor POM and 2017 project conventions."/>
       </c:changes>
     </c:release>
-    <c:release date="2017-11-11T19:43:32+00:00" ticket-system="com.github.io7m.jintegers" version="2.0.0">
+    <c:release date="2017-11-11T00:00:00+00:00" is-open="false" ticket-system="com.github.io7m.jintegers" version="2.0.0">
       <c:changes>
         <c:change compatible="false" date="2017-11-11T00:00:00+00:00" summary="Publish Java 9 modules, require JDK 9"/>
-        <c:change compatible="false" date="2017-11-11T19:43:32+00:00" summary="Remove com.io7m.jnull dependency"/>
+        <c:change compatible="false" date="2017-11-11T00:00:00+00:00" summary="Remove com.io7m.jnull dependency"/>
+      </c:changes>
+    </c:release>
+    <c:release date="2022-04-09T16:59:19+00:00" is-open="true" ticket-system="com.github.io7m.jintegers" version="3.0.0">
+      <c:changes>
+        <c:change compatible="false" date="2022-04-09T16:59:19+00:00" summary="Require JDK 17"/>
       </c:changes>
     </c:release>
   </c:releases>
