@@ -1,5 +1,5 @@
 /*
- * Copyright © 2014 <code@io7m.com> http://io7m.com
+ * Copyright © 2014 Mark Raynsford <code@io7m.com> https://www.io7m.com
  * 
  * Permission to use, copy, modify, and/or distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above
@@ -235,8 +235,7 @@ public final class Signed24
     final int r0 = (buffer[0] << 16);
     final int r1 = (buffer[1] & 0xff) << 8;
     final int r2 = (buffer[2] & 0xff);
-    final int r = r0 | r1 | r2;
-    return r;
+    return r0 | r1 | r2;
   }
 
   /**
@@ -260,8 +259,7 @@ public final class Signed24
     final int r0 = (buffer.get(index + 0) << 16);
     final int r1 = (buffer.get(index + 1) & 0xff) << 8;
     final int r2 = (buffer.get(index + 2) & 0xff);
-    final int r = r0 | r1 | r2;
-    return r;
+    return r0 | r1 | r2;
   }
 
   /**
@@ -317,8 +315,7 @@ public final class Signed24
     final int r0 = (buffer[0] & 0xff);
     final int r1 = (buffer[1] & 0xff) << 8;
     final int r2 = buffer[2] << 16;
-    final int r = r0 | r1 | r2;
-    return r;
+    return r0 | r1 | r2;
   }
 
   /**
@@ -343,7 +340,6 @@ public final class Signed24
     final int r0 = (buffer.get(index + 0) & 0xff);
     final int r1 = (buffer.get(index + 1) & 0xff) << 8;
     final int r2 = buffer.get(index + 2) << 16;
-    final int r = r0 | r1 | r2;
-    return r;
+    return r0 | r1 | r2;
   }
 }

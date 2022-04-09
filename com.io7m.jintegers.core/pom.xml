@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <project
   xmlns="http://maven.apache.org/POM/4.0.0"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -8,19 +9,30 @@
   <parent>
     <groupId>com.io7m.jintegers</groupId>
     <artifactId>com.io7m.jintegers</artifactId>
-    <version>2.0.0</version>
+    <version>3.0.0</version>
   </parent>
   <artifactId>com.io7m.jintegers.core</artifactId>
 
-  <packaging>bundle</packaging>
+  <packaging>jar</packaging>
   <name>com.io7m.jintegers.core</name>
   <description>Integer handling (Core)</description>
-  <url>http://io7m.github.io/jintegers/</url>
+  <url>https://www.io7m.com/software/jintegers</url>
 
   <dependencies>
     <dependency>
       <groupId>com.io7m.junreachable</groupId>
       <artifactId>com.io7m.junreachable.core</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.annotation.bundle</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.annotation.versioning</artifactId>
+      <scope>provided</scope>
     </dependency>
 
     <dependency>
@@ -32,30 +44,28 @@
 
   <build>
     <plugins>
-      <!-- Check style -->
+      <!-- Spot bugs -->
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-checkstyle-plugin</artifactId>
-      </plugin>
-
-      <!-- Produce OSGi bundle -->
-      <plugin>
-        <groupId>org.apache.felix</groupId>
-        <artifactId>maven-bundle-plugin</artifactId>
-        <extensions>true</extensions>
-        <configuration>
-          <instructions>
-            <Export-Package>
-              com.io7m.jintegers
-            </Export-Package>
-          </instructions>
-        </configuration>
+        <groupId>com.github.spotbugs</groupId>
+        <artifactId>spotbugs-maven-plugin</artifactId>
       </plugin>
 
       <!-- Determine test coverage -->
       <plugin>
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
+      </plugin>
+
+      <!-- Ignore dependencies that bytecode analysis gets wrong. -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <configuration>
+          <failOnWarning>true</failOnWarning>
+          <ignoredUnusedDeclaredDependencies>
+            <ignoredUnusedDeclaredDependency>junit:junit:*</ignoredUnusedDeclaredDependency>
+          </ignoredUnusedDeclaredDependencies>
+        </configuration>
       </plugin>
     </plugins>
   </build>
