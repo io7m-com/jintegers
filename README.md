@@ -13,3 +13,37 @@ jintegers
 | OpenJDK (Temurin) LTS | Linux | [![Build (OpenJDK (Temurin) LTS, Linux)](https://img.shields.io/github/actions/workflow/status/io7m-com/jintegers/main.linux.temurin.lts.yml)](https://www.github.com/io7m-com/jintegers/actions?query=workflow%3Amain.linux.temurin.lts)|
 | OpenJDK (Temurin) Current | Windows | [![Build (OpenJDK (Temurin) Current, Windows)](https://img.shields.io/github/actions/workflow/status/io7m-com/jintegers/main.windows.temurin.current.yml)](https://www.github.com/io7m-com/jintegers/actions?query=workflow%3Amain.windows.temurin.current)|
 | OpenJDK (Temurin) LTS | Windows | [![Build (OpenJDK (Temurin) LTS, Windows)](https://img.shields.io/github/actions/workflow/status/io7m-com/jintegers/main.windows.temurin.lts.yml)](https://www.github.com/io7m-com/jintegers/actions?query=workflow%3Amain.windows.temurin.lts)|
+
+## jintegers
+
+The `jintegers` package provides basic functions to pack and unpack integers
+to/from byte arrays in specific byte orders.
+
+## Status
+
+As the Java platform evolves, libraries that may have been necessary in the
+past can become unnecessary due to new platform features. The `jintegers`
+package falls into this category: The new
+[Foreign Function And Memory API](https://openjdk.org/jeps/424) makes much
+of the functionality here redundant.
+
+This package is in maintenance mode and will not see any new functionality.
+
+## Features
+
+* High coverage test suite.
+* Written in pure Java 21.
+* [OSGi-ready](https://www.osgi.org/)
+* [JPMS-ready](https://en.wikipedia.org/wiki/Java_Platform_Module_System)
+* ISC license.
+
+## Usage
+
+```
+byte data[] = new byte[4];
+
+Signed32.packToBytesLittleEndian(23, data);
+
+int r = Signed32.unpackFromBytesLittleEndian(data);
+```
+

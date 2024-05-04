@@ -23,7 +23,6 @@
 
   <modules>
     <module>com.io7m.jintegers.core</module>
-    <module>com.io7m.jintegers.documentation</module>
     <module>com.io7m.jintegers.tests</module>
   </modules>
 
@@ -117,13 +116,6 @@
   <build>
     <pluginManagement>
       <plugins>
-        <!-- jstructural plugin for generating documentation. -->
-        <plugin>
-          <groupId>com.io7m.jstructural</groupId>
-          <artifactId>io7m-jstructural-maven-plugin</artifactId>
-          <version>5.0.0</version>
-        </plugin>
-
         <!-- Spot bugs -->
         <plugin>
           <groupId>com.github.spotbugs</groupId>
