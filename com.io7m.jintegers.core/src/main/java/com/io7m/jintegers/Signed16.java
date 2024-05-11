@@ -16,11 +16,9 @@
 
 package com.io7m.jintegers;
 
-import java.util.Objects;
-import com.io7m.junreachable.UnreachableCodeException;
-
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.util.Objects;
 
 /**
  * 16-bit signed integer packing/unpacking functions.
@@ -30,7 +28,7 @@ public final class Signed16
 {
   private Signed16()
   {
-    throw new UnreachableCodeException();
+
   }
 
   /**

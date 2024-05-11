@@ -16,10 +16,8 @@
 
 package com.io7m.jintegers;
 
-import java.util.Objects;
-import com.io7m.junreachable.UnreachableCodeException;
-
 import java.nio.ByteBuffer;
+import java.util.Objects;
 
 /**
  * Unsigned 32-bit integer handling.
@@ -29,7 +27,7 @@ public final class Unsigned32
 {
   private Unsigned32()
   {
-    throw new UnreachableCodeException();
+
   }
 
   /**

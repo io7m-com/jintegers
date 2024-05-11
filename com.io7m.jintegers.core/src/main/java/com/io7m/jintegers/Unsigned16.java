@@ -16,11 +16,9 @@
 
 package com.io7m.jintegers;
 
-import java.util.Objects;
-import com.io7m.junreachable.UnreachableCodeException;
-
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.util.Objects;
 
 /**
  * Unsigned 16-bit integer handling.
@@ -30,7 +28,7 @@ public final class Unsigned16
 {
   private Unsigned16()
   {
-    throw new UnreachableCodeException();
+
   }
 
   /**
