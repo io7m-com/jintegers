@@ -35,14 +35,20 @@
         <c:change compatible="false" date="2017-11-11T00:00:00+00:00" summary="Remove com.io7m.jnull dependency"/>
       </c:changes>
     </c:release>
-    <c:release date="2022-04-09T16:59:57+00:00" is-open="false" ticket-system="com.github.io7m.jintegers" version="3.0.0">
+    <c:release date="2022-04-09T00:00:00+00:00" is-open="false" ticket-system="com.github.io7m.jintegers" version="3.0.0">
       <c:changes>
         <c:change compatible="false" date="2022-04-09T00:00:00+00:00" summary="Require JDK 17"/>
+      </c:changes>
+    </c:release>
+    <c:release date="2024-05-11T15:46:59+00:00" is-open="false" ticket-system="com.github.io7m.jintegers" version="3.0.1">
+      <c:changes>
+        <c:change date="2024-05-11T00:00:00+00:00" summary="Move to new organization."/>
+        <c:change date="2024-05-11T00:00:00+00:00" summary="Remove dependency on junreachable."/>
       </c:changes>
     </c:release>
   </c:releases>
   <c:ticket-systems>
     <c:ticket-system default="false" id="com.io7m.fossil.jintegers" url="http://fossil.io7m.com/repo.cgi/io7m-jintegers/tktview?name="/>
-    <c:ticket-system default="true" id="com.github.io7m.jintegers" url="http://github.com/io7m/jintegers/issues/"/>
+    <c:ticket-system default="true" id="com.github.io7m.jintegers" url="http://www.github.com/io7m-com/jintegers/issues/"/>
   </c:ticket-systems>
 </c:changelog>

@@ -11,14 +11,26 @@
     <artifactId>com.io7m.jintegers</artifactId>
     <version>3.0.1</version>
   </parent>
-  <artifactId>com.io7m.jintegers.core</artifactId>
+  <artifactId>com.io7m.jintegers.tests</artifactId>
 
   <packaging>jar</packaging>
-  <name>com.io7m.jintegers.core</name>
+  <name>com.io7m.jintegers.tests</name>
   <description>Integer handling (Core)</description>
   <url>https://www.io7m.com/software/jintegers</url>
 
+  <properties>
+    <spotbugs.skip>true</spotbugs.skip>
+    <mdep.analyze.skip>true</mdep.analyze.skip>
+    <checkstyle.skip>true</checkstyle.skip>
+  </properties>
+
   <dependencies>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>com.io7m.jintegers.core</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+
     <dependency>
       <groupId>org.osgi</groupId>
       <artifactId>org.osgi.annotation.bundle</artifactId>
@@ -33,34 +45,15 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <scope>test</scope>
     </dependency>
   </dependencies>
 
   <build>
     <plugins>
-      <!-- Spot bugs -->
-      <plugin>
-        <groupId>com.github.spotbugs</groupId>
-        <artifactId>spotbugs-maven-plugin</artifactId>
-      </plugin>
-
       <!-- Determine test coverage -->
       <plugin>
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
-      </plugin>
-
-      <!-- Ignore dependencies that bytecode analysis gets wrong. -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-dependency-plugin</artifactId>
-        <configuration>
-          <failOnWarning>true</failOnWarning>
-          <ignoredUnusedDeclaredDependencies>
-            <ignoredUnusedDeclaredDependency>junit:junit:*</ignoredUnusedDeclaredDependency>
-          </ignoredUnusedDeclaredDependencies>
-        </configuration>
       </plugin>
     </plugins>
   </build>

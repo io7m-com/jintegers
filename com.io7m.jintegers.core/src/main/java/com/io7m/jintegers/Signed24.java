@@ -16,11 +16,9 @@
 
 package com.io7m.jintegers;
 
-import java.util.Objects;
-import com.io7m.junreachable.UnreachableCodeException;
-
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.util.Objects;
 
 /**
  * 24-bit integer packing/unpacking functions.
@@ -30,7 +28,7 @@ public final class Signed24
 {
   private Signed24()
   {
-    throw new UnreachableCodeException();
+
   }
 
   /**

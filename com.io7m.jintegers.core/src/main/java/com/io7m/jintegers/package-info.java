@@ -19,7 +19,7 @@
  */
 
 @Export
-@Version("3.0.0")
+@Version("3.0.1")
 package com.io7m.jintegers;
 
 import org.osgi.annotation.bundle.Export;
